@@ -1,6 +1,8 @@
-# Vozinha Store / Digital Dropouts Teardown & Blog Adaptation
+# Vozinha Store (`vozinha.store.cv`) / Digital Dropouts Teardown
 
-A comprehensive forensic architecture teardown of [digitaldropouts.net](https://digitaldropouts.net/) and a practical blueprint for replicating its dark-grunge, experiential occult-mysticism style into a modern, frontend-only blog.
+> **Official Project Implementation Plan**: See [**VOZINHA_SITE_PLAN.md**](file:///c:/Users/Jabir/Desktop/Projects/vozinha-store/VOZINHA_SITE_PLAN.md) for the streamlined, 6-section pure frontend roadmap for `vozinha.store.cv` (Comments Storm, 3D Saves Orbit vs Messi/Ronaldo/Neymar, and Drop 01 T-Shirt Showcase).
+
+A comprehensive forensic architecture teardown of [digitaldropouts.net](https://digitaldropouts.net/) and a practical blueprint for replicating its dark-grunge, experiential style into a modern, pure-frontend showpiece.
 
 ---
 
@@ -174,7 +176,8 @@ Adapting this dark, atmospheric, tactile design system to a **frontend-only blog
 
 ```
 vozinha-store/
-├── README.md                                  # Architectural teardown & blog blueprint (this file)
+├── VOZINHA_SITE_PLAN.md                       # Comprehensive 6-section implementation plan for vozinha.store.cv
+├── README.md                                  # Architectural teardown & blueprint (this file)
 ├── STYLE_GUIDE_AND_ARCHITECTURE.md            # Detailed technical specs, audio math & canvas code
 ├── Dropout Skool.html                         # Full downloaded source of digitaldropouts.net
 └── Dropout Skool_files/                       # Static media, CSS stylesheets, and JS bundles
