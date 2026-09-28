@@ -1,29 +1,21 @@
 /* =====================================================================
-   VOZINHA.STORE.CV — Master JavaScript Engine
+   VOZINHA.STORE.CV — Master JavaScript Controller
    1. Procedural Web Audio API (Wind, Thunder, Sub-bass)
-   2. Canvas 2D Smoke Engine with Gust Physics
-   3. GSAP Lightning Engine with SVG Bolt Strikes
-   4. Comments Storm Engine (Drifting Leaves)
-   5. Clothesline Darkroom Engine (Sagging Cords, Clothespins, Hang Sway)
-   6. 3D Vault Orbit Engine (Saves vs Messi, Ronaldo, Neymar)
-   7. T-Shirt Front/Back Switcher
-   8. Fullscreen Lightbox Modal Controller
+   2. Canvas 2D Procedural Smoke Engine
+   3. GSAP Lightning Engine & Periodic Strikes
+   4. The Comments Storm Physics Engine (Drifting Leaves)
+   5. The 3D Vault Orbit Engine (Saves vs Messi, Ronaldo, Neymar)
+   6. T-Shirt Front/Back Switcher
+   7. Accessible Modal Dialog with Light-Dismiss
    ===================================================================== */
 
-(function () {
-  'use strict';
-
-  const root = document.getElementById('stb-storm');
-  if (!root) return;
-
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const isMobile = window.matchMedia('(max-width: 900px)').matches;
+document.addEventListener('DOMContentLoaded', () => {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ===================================================================
   // 1. PROCEDURAL WEB AUDIO API (Wind Synthesis & Thunder)
   // ===================================================================
   let ac = null, master = null, windGain = null;
-  let soundOn = false;
 
   function ensureAudio() {
     if (ac) {
@@ -35,10 +27,10 @@
 
     ac = new AudioContext();
     master = ac.createGain();
-    master.gain.value = 0.6;
+    master.gain.value = 0.55;
     master.connect(ac.destination);
 
-    // Procedural Brownian Wind Noise Buffer (Seamless, no MP3 loop)
+    // Procedural Brownian Wind Noise Buffer (Seamless, zero MP3 loop)
     const len = ac.sampleRate * 4;
     const buf = ac.createBuffer(1, len, ac.sampleRate);
     const d = buf.getChannelData(0);
@@ -84,7 +76,7 @@
     windGain.connect(master);
     src.start();
 
-    // 42Hz Sub-bass rumble
+    // 42Hz Sub-bass stadium rumble
     const sub = ac.createOscillator();
     sub.type = 'sine';
     sub.frequency.value = 42;
@@ -93,8 +85,6 @@
     sub.connect(subG);
     subG.connect(master);
     sub.start();
-
-    soundOn = true;
   }
 
   // Synthesized Sub-Drop Thunder Kick
@@ -123,11 +113,11 @@
   window.addEventListener('keydown', () => ensureAudio(), { once: true });
 
   // ===================================================================
-  // 2. GSAP LIGHTNING ENGINE & GUST PHYSICS
+  // 2. GSAP LIGHTNING ENGINE & BOLT STRIKES
   // ===================================================================
   let gust = 1.0;
-  const flash = root.querySelector('.fx-flash');
-  const boltPaths = root.querySelectorAll('.gate-bolt path');
+  const flash = document.querySelector('.fx-flash');
+  const boltPaths = document.querySelectorAll('.gate-bolt path');
 
   boltPaths.forEach((p) => {
     const L = p.getTotalLength();
@@ -136,7 +126,7 @@
   });
 
   function strike(withBolt = true, strength = 1) {
-    if (reduce) return;
+    if (reduceMotion) return;
     if (window.gsap && flash) {
       window.gsap.timeline()
         .to(flash, { opacity: 0.85 * strength, duration: 0.05 })
@@ -164,15 +154,15 @@
 
     setTimeout(() => { thunder(strength); }, 250 + Math.random() * 400);
 
-    // Wind gust surge: accelerates smoke & floating leaves
-    gust = 4.2;
-    setTimeout(() => { gust = 2.0; }, 900);
+    // Wind gust surge: accelerates smoke & floating cards
+    gust = 3.8;
+    setTimeout(() => { gust = 1.8; }, 900);
     setTimeout(() => { gust = 1.0; }, 2600);
   }
 
   // Periodic atmospheric lightning strikes
   function scheduleLightning() {
-    const delay = 8000 + Math.random() * 9000;
+    const delay = 9000 + Math.random() * 10000;
     setTimeout(() => {
       strike(true, 0.7 + Math.random() * 0.3);
       scheduleLightning();
@@ -180,10 +170,10 @@
   }
   scheduleLightning();
 
-  // Amulet button awakens the storm (lightning strike + thunder)
-  const amulet = document.getElementById('amuletBtn') || root.querySelector('.amulet');
-  if (amulet) {
-    amulet.addEventListener('click', (e) => {
+  // Amulet button click triggers lightning strike & thunder
+  const amuletBtn = document.getElementById('amuletBtn');
+  if (amuletBtn) {
+    amuletBtn.addEventListener('click', (e) => {
       e.preventDefault();
       ensureAudio();
       strike(true, 1.3);
@@ -193,21 +183,21 @@
   // ===================================================================
   // 3. CANVAS 2D PROCEDURAL SMOKE ENGINE
   // ===================================================================
-  const canvas = root.querySelector('.fx-smoke');
-  if (canvas && !reduce) {
+  const canvas = document.querySelector('.smoke-canvas');
+  if (canvas && !reduceMotion) {
     const ctx = canvas.getContext('2d');
-    const puffs = [];
-    const N = isMobile ? 12 : 24;
     let cw, ch;
+    const puffs = [];
+    const puffCount = window.innerWidth < 768 ? 10 : 20;
 
     const sprite = document.createElement('canvas');
     sprite.width = sprite.height = 256;
     const sg = sprite.getContext('2d');
-    const g = sg.createRadialGradient(128, 128, 10, 128, 128, 128);
-    g.addColorStop(0, 'rgba(160, 200, 185, 0.48)');
-    g.addColorStop(0.4, 'rgba(120, 170, 150, 0.2)');
-    g.addColorStop(1, 'rgba(90, 140, 120, 0)');
-    sg.fillStyle = g;
+    const grad = sg.createRadialGradient(128, 128, 10, 128, 128, 128);
+    grad.addColorStop(0, 'rgba(160, 200, 185, 0.45)');
+    grad.addColorStop(0.4, 'rgba(12, 38, 69, 0.2)');
+    grad.addColorStop(1, 'rgba(3, 7, 13, 0)');
+    sg.fillStyle = grad;
     sg.fillRect(0, 0, 256, 256);
 
     const resize = () => {
@@ -217,26 +207,28 @@
     resize();
     window.addEventListener('resize', resize, { passive: true });
 
-    const newPuff = (any = false) => {
-      const r = 160 + Math.random() * 280;
+    const createPuff = (anywhere = false) => {
+      const r = 180 + Math.random() * 260;
       return {
         x: Math.random() * cw,
-        y: any ? Math.random() * ch : ch + r,
+        y: anywhere ? Math.random() * ch : ch + r * 0.5,
         r: r,
-        vx: -(0.06 + Math.random() * 0.22),
-        vy: -(0.07 + Math.random() * 0.18),
-        a: 0.08 + Math.random() * 0.14,
-        rot: Math.random() * 6.28,
-        vr: (Math.random() - 0.5) * 0.002
+        vx: -(0.08 + Math.random() * 0.18),
+        vy: -(0.12 + Math.random() * 0.22),
+        alpha: 0.10 + Math.random() * 0.16,
+        rot: Math.random() * Math.PI * 2,
+        vr: (Math.random() - 0.5) * 0.003
       };
     };
 
-    for (let i = 0; i < N; i++) puffs.push(newPuff(true));
+    for (let i = 0; i < puffCount; i++) {
+      puffs.push(createPuff(true));
+    }
 
-    let last = 0;
-    function frameSmoke(t) {
-      if (t - last > 33) {
-        last = t;
+    let lastTime = 0;
+    const renderSmoke = (time) => {
+      if (time - lastTime > 32) {
+        lastTime = time;
         ctx.clearRect(0, 0, cw, ch);
         for (let i = 0; i < puffs.length; i++) {
           const p = puffs[i];
@@ -244,159 +236,146 @@
           p.y += p.vy;
           p.rot += p.vr;
 
-          if (p.y < -p.r) puffs[i] = newPuff(false);
-          if (p.x < -p.r) p.x = cw + p.r;
+          if (p.y < -p.r * 1.2) puffs[i] = createPuff(false);
+          if (p.x < -p.r * 1.2) p.x = cw + p.r;
 
           ctx.save();
-          ctx.globalAlpha = p.a;
+          ctx.globalAlpha = p.alpha;
           ctx.translate(p.x, p.y);
           ctx.rotate(p.rot);
           ctx.drawImage(sprite, -p.r, -p.r * 0.7, p.r * 2, p.r * 1.4);
           ctx.restore();
         }
       }
-      requestAnimationFrame(frameSmoke);
-    }
-    requestAnimationFrame(frameSmoke);
+      requestAnimationFrame(renderSmoke);
+    };
+    requestAnimationFrame(renderSmoke);
   }
 
   // ===================================================================
-  // 4. COMMENTS STORM ENGINE (Authentic Leaves Particle Vortex)
+  // 4. THE COMMENTS STORM ENGINE (THE NAILED GALLERY EFFECT)
   // ===================================================================
-  const commentsPool = [
-    { src: 'assets/images/comment-1.svg', w: 360, h: 160, title: 'Casimiro Miguel • CazéTV' },
-    { src: 'assets/images/comment-2.svg', w: 360, h: 160, title: 'Rodrigo Silva • Fan' },
-    { src: 'assets/images/comment-3.svg', w: 360, h: 160, title: 'Madrid Sports Review' },
-    { src: 'assets/images/comment-4.svg', w: 360, h: 160, title: 'São Vicente TV • Mindelo' },
-    { src: 'assets/images/comment-5.svg', w: 360, h: 160, title: 'Gabriel Santos • Football Digest' },
-    { src: 'assets/images/comment-6.svg', w: 360, h: 160, title: 'FIFA World Daily Highlights' },
-    { src: 'assets/images/comment-7.svg', w: 360, h: 160, title: 'Lucas Moura Fan • Brazil' },
-    { src: 'assets/images/comment-8.svg', w: 360, h: 160, title: 'Tubarões Azuis Army' }
-  ];
+  const stormField = document.getElementById('stormField');
+  if (stormField && !reduceMotion) {
+    const commentData = [
+      { file: 'comment-1.svg', title: 'Casimiro Miguel • CazéTV', desc: '"SIGAM O HOMEM IMEDIATAMENTE! O Vozinha é um monstro sagrado!"' },
+      { file: 'comment-2.svg', title: 'Rodrigo Silva • Fan', desc: 'Cheguei pelo Cazé e virei fã incondicional. Vozinha lenda absoluta!' },
+      { file: 'comment-3.svg', title: 'Madrid Sports Review', desc: 'Spain threw everything. Vozinha stopped everything. Masterclass.' },
+      { file: 'comment-4.svg', title: 'São Vicente TV • Mindelo', desc: 'Orgulho infinito de Mindelo! Nosso capitão brilhando pro mundo inteiro.' },
+      { file: 'comment-5.svg', title: 'Gabriel Santos • Football Digest', desc: 'Messi, Ronaldo, Neymar... nobody is scoring on Vozinha on his night.' },
+      { file: 'comment-6.svg', title: 'FIFA World Daily Highlights', desc: 'Official Player of the Match: Josimar Dias VOZINHA.' },
+      { file: 'comment-7.svg', title: 'Lucas Moura Fan • Brazil', desc: 'O Brasil inteiro parou pra torcer pelo Vozinha. 29M+ reach.' },
+      { file: 'comment-8.svg', title: 'Tubarões Azuis Army', desc: '12 years defending this nation. True captain forever in history.' }
+    ];
 
-  function initStormField(field) {
-    if (!field || reduce) return;
-    let fw = field.clientWidth, fh = field.clientHeight;
-    let alive = [];
-    const MAX = isMobile ? 5 : 8;
-    let next = 0;
+    let fieldWidth = stormField.clientWidth;
+    let fieldHeight = stormField.clientHeight;
+    const maxAlive = window.innerWidth < 768 ? 4 : 7;
+    const activeLeaves = [];
+    let nextIndex = 0;
 
-    const measure = () => {
-      fw = field.clientWidth;
-      fh = field.clientHeight;
+    const updateBounds = () => {
+      fieldWidth = stormField.clientWidth;
+      fieldHeight = stormField.clientHeight;
     };
-    window.addEventListener('resize', measure, { passive: true });
+    window.addEventListener('resize', updateBounds, { passive: true });
 
-    function spawn(initial = false) {
-      const item = commentsPool[next++ % commentsPool.length];
-      const el = document.createElement('a');
-      el.className = 'leaf';
-      el.href = '#';
+    const spawnLeaf = (initial = false) => {
+      const item = commentData[nextIndex++ % commentData.length];
+      const el = document.createElement('div');
+      el.className = 'comment-card';
+      el.innerHTML = `<img src="assets/images/${item.file}" alt="${item.title}" loading="lazy" width="340" height="150">`;
+      stormField.appendChild(el);
 
-      const img = document.createElement('img');
-      img.src = item.src;
-      img.alt = item.title;
-      img.loading = 'lazy';
-      img.width = item.w;
-      img.height = item.h;
-      el.appendChild(img);
-      field.appendChild(el);
-
-      const lh = 120 * (isMobile ? 0.75 : 1.0);
-      const lw = lh * (item.w / item.h);
-
-      const L = {
+      const leaf = {
         el,
-        x: initial ? Math.random() * (fw - lw) : fw + 30,
-        y: initial ? Math.random() * (fh - lh) : Math.random() * (fh - lh),
-        vx: -(0.85 + Math.random() * 0.75),
-        vy: (Math.random() - 0.5) * 0.3,
-        rot: (Math.random() - 0.5) * 22,
-        vr: (Math.random() - 0.5) * 0.2,
-        ph: Math.random() * 6.28,
-        sway: 16 + Math.random() * 20,
-        held: false,
-        w: lw,
-        h: lh,
-        z: Math.random()
+        item,
+        x: initial ? Math.random() * (fieldWidth - 340) : fieldWidth + 20,
+        y: Math.random() * (fieldHeight - 160),
+        vx: -(0.75 + Math.random() * 0.65),
+        vy: (Math.random() - 0.5) * 0.2,
+        rot: (Math.random() - 0.5) * 12,
+        phase: Math.random() * Math.PI * 2,
+        held: false
       };
 
-      el.style.zIndex = Math.round(L.z * 10);
-
       el.addEventListener('mouseenter', () => {
-        L.held = true;
+        leaf.held = true;
         el.classList.add('held');
-        el.style.transform = `translate3d(${L.x}px, ${L.y}px, 0) scale(1.35) rotate(0deg)`;
+        el.style.transform = `translate3d(${leaf.x}px, ${leaf.y}px, 0) scale(1.25) rotate(0deg)`;
       });
 
       el.addEventListener('mouseleave', () => {
-        L.held = false;
+        leaf.held = false;
         el.classList.remove('held');
       });
 
-      el.addEventListener('click', (e) => {
-        e.preventDefault();
-        openLightbox(item.src, item.title);
+      el.addEventListener('click', () => {
+        openModal(`assets/images/${item.file}`, item.title, item.desc);
       });
 
-      alive.push(L);
+      activeLeaves.push(leaf);
+    };
+
+    // Pre-populate field
+    for (let i = 0; i < maxAlive; i++) {
+      spawnLeaf(true);
     }
 
-    for (let i = 0; i < MAX; i++) spawn(true);
+    let lastTick = performance.now();
+    const tickStorm = (now) => {
+      const dt = Math.min(32, now - lastTick) / 16.7;
+      lastTick = now;
 
-    let lastT = performance.now();
-    function tick(now) {
-      const dt = Math.min(40, now - lastT) / 16.7;
-      lastT = now;
+      if (activeLeaves.length < maxAlive && Math.random() < 0.035) {
+        spawnLeaf(false);
+      }
 
-      if (!reduce && !document.hidden) {
-        if (alive.length < MAX && Math.random() < 0.04) spawn(false);
+      for (let i = activeLeaves.length - 1; i >= 0; i--) {
+        const L = activeLeaves[i];
+        if (!L.held) {
+          L.phase += 0.015 * dt;
+          L.x += L.vx * gust * dt;
+          L.y += (L.vy + Math.sin(L.phase) * 0.35) * dt;
 
-        for (let i = alive.length - 1; i >= 0; i--) {
-          const L = alive[i];
-          if (!L.held) {
-            L.ph += 0.014 * dt;
-            L.x += L.vx * gust * dt * (isMobile ? 1.1 : 1.4);
-            L.y += (L.vy + Math.sin(L.ph) * 0.3) * dt;
-            L.rot += L.vr * dt * gust * 1.5;
-            L.el.style.transform = `translate3d(${L.x + Math.sin(L.ph * 0.7) * L.sway}px, ${L.y}px, 0) rotate(${L.rot}deg) scale(${0.88 + L.z * 0.22})`;
-          }
+          L.el.style.transform = `translate3d(${L.x}px, ${L.y + Math.sin(L.phase * 0.8) * 12}px, 0) rotate(${L.rot}deg)`;
+        }
 
-          if (L.x < -L.w - 50) {
-            L.el.remove();
-            alive.splice(i, 1);
-          }
+        // Remove offscreen
+        if (L.x < -360) {
+          L.el.remove();
+          activeLeaves.splice(i, 1);
         }
       }
-      requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
+      requestAnimationFrame(tickStorm);
+    };
+    requestAnimationFrame(tickStorm);
   }
 
-  const stormContainer = document.getElementById('commentsStorm');
-  if (stormContainer) initStormField(stormContainer);
-
   // ===================================================================
-  // 5. THE 3D VAULT ORBIT ENGINE (Vozinha & Top Saves)
+  // 5. THE 3D VAULT ORBIT ENGINE (THE NAILED GALLERY EFFECT)
   // ===================================================================
   const vaultStage = document.getElementById('vaultStage');
-  const orbitCards = document.querySelectorAll('.vault-orbit-card');
-  if (vaultStage && orbitCards.length > 0 && !reduce) {
+  const orbitCards = document.querySelectorAll('.orbit-card');
+  if (vaultStage && orbitCards.length > 0 && !reduceMotion) {
     let angle = 0;
-    let isPaused = false;
-    const speed = 0.0065;
+    let isOrbitPaused = false;
+    const speed = 0.007;
+
+    vaultStage.addEventListener('mouseenter', () => { isOrbitPaused = true; });
+    vaultStage.addEventListener('mouseleave', () => { isOrbitPaused = false; });
+
     const total = orbitCards.length;
     const step = (Math.PI * 2) / total;
 
-    vaultStage.addEventListener('mouseenter', () => { isPaused = true; });
-    vaultStage.addEventListener('mouseleave', () => { isPaused = false; });
+    const renderOrbit = () => {
+      if (!isOrbitPaused) {
+        angle += speed;
+      }
 
-    function renderOrbit() {
-      if (!isPaused) angle += speed;
-
-      const stageW = vaultStage.clientWidth;
-      const rx = Math.min(stageW * 0.44, 460);
-      const ry = 90;
+      const stageWidth = vaultStage.clientWidth;
+      const rx = Math.min(stageWidth * 0.42, 420); // Horizontal ellipse radius
+      const ry = 80;                               // Vertical ellipse depth
 
       orbitCards.forEach((card, index) => {
         const theta = angle + index * step;
@@ -404,9 +383,11 @@
         const y = Math.sin(theta) * ry;
         const z = Math.sin(theta); // -1 (back) to +1 (front)
 
-        const scale = 0.78 + (z + 1) * 0.22;
-        // Front cards pass in front of goalkeeper cutout (z: 10), back cards pass behind
+        // Scale between 0.8 and 1.2 based on z-depth
+        const scale = 0.8 + (z + 1) * 0.2;
+        // Dynamic z-index: front cards pass OVER center goalkeeper (z: 10), back cards pass BEHIND (z: 5)
         const zIndex = z > 0 ? 25 : 5;
+        // Opacity falloff at back
         const opacity = 0.65 + (z + 1) * 0.18;
 
         card.style.transform = `translate(-50%, -50%) translate3d(${x}px, ${y}px, 0) scale(${scale})`;
@@ -415,36 +396,27 @@
       });
 
       requestAnimationFrame(renderOrbit);
-    }
+    };
     requestAnimationFrame(renderOrbit);
 
+    // Orbit card click opens modal dialog
     orbitCards.forEach((card) => {
       card.addEventListener('click', () => {
-        const img = card.querySelector('img');
-        const cap = card.querySelector('.vault-card-caption');
-        if (img) openLightbox(img.src, cap ? cap.textContent : 'Legendary Save');
+        const src = card.getAttribute('data-src');
+        const title = card.getAttribute('data-title');
+        const desc = card.getAttribute('data-desc');
+        openModal(src, title, desc);
       });
     });
   }
 
   // ===================================================================
-  // 6. DARKROOM CLOTHESLINE LIGHTBOX HOOKS
-  // ===================================================================
-  const darkroomCards = document.querySelectorAll('.pile .card');
-  darkroomCards.forEach((c) => {
-    c.addEventListener('click', () => {
-      const img = c.querySelector('img');
-      if (img) openLightbox(img.src, img.alt || 'Cabo Verde vs Spain Match Action');
-    });
-  });
-
-  // ===================================================================
-  // 7. T-SHIRT FRONT / BACK SWITCHER
+  // 6. T-SHIRT FRONT / BACK SWITCHER
   // ===================================================================
   const teeFront = document.getElementById('teeFront');
   const teeBack = document.getElementById('teeBack');
-  const btnFront = document.getElementById('btnFront');
-  const btnBack = document.getElementById('btnBack');
+  const btnFront = document.getElementById('btnTeeFront');
+  const btnBack = document.getElementById('btnTeeBack');
 
   if (teeFront && teeBack && btnFront && btnBack) {
     btnFront.addEventListener('click', () => {
@@ -463,39 +435,42 @@
   }
 
   // ===================================================================
-  // 8. LIGHTBOX MODAL CONTROLLER
+  // 7. ACCESSIBLE MODAL DIALOG (THE NAILED LIGHTBOX)
   // ===================================================================
-  const lightbox = document.getElementById('lb');
-  const lbImg = document.getElementById('lbImg');
-  const lbClose = document.getElementById('lbClose');
-  const lbCap = document.getElementById('lbCap');
+  const dialog = document.getElementById('previewModal');
+  const dialogImg = document.getElementById('dialogImg');
+  const dialogTitle = document.getElementById('dialogTitle');
+  const dialogDesc = document.getElementById('dialogDesc');
+  const dialogClose = document.getElementById('dialogClose');
 
-  function openLightbox(src, title = '') {
-    if (!lightbox || !lbImg) return;
-    lbImg.src = src;
-    if (lbCap) lbCap.textContent = title;
-    lightbox.classList.add('show');
-    lightbox.setAttribute('aria-hidden', 'false');
+  const openModal = (src, title, desc) => {
+    if (!dialog) return;
+    if (dialogImg) dialogImg.src = src;
+    if (dialogTitle) dialogTitle.textContent = title || 'Moment Preview';
+    if (dialogDesc) dialogDesc.textContent = desc || '';
+    dialog.showModal();
+  };
+
+  if (dialog) {
+    if (dialogClose) {
+      dialogClose.addEventListener('click', () => dialog.close());
+    }
+
+    // Modern Web Guidance: Light-dismiss fallback for outside click
+    if (!('closedBy' in HTMLDialogElement.prototype)) {
+      dialog.addEventListener('click', (event) => {
+        if (event.target !== dialog) return;
+        const rect = dialog.getBoundingClientRect();
+        const isDialogContent = (
+          rect.top <= event.clientY &&
+          event.clientY <= rect.top + rect.height &&
+          rect.left <= event.clientX &&
+          event.clientX <= rect.left + rect.width
+        );
+        if (!isDialogContent) {
+          dialog.close();
+        }
+      });
+    }
   }
-
-  function closeLightbox() {
-    if (!lightbox) return;
-    lightbox.classList.remove('show');
-    lightbox.setAttribute('aria-hidden', 'true');
-  }
-
-  if (lightbox) {
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox || e.target === lbClose) {
-        closeLightbox();
-      }
-    });
-
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && lightbox.classList.contains('show')) {
-        closeLightbox();
-      }
-    });
-  }
-
-})();
+});
