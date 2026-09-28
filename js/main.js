@@ -3,14 +3,15 @@
    1. Procedural Web Audio API (Wind, Thunder, Sub-bass)
    2. Canvas 2D Procedural Smoke Engine
    3. GSAP Lightning Engine & Periodic Strikes
-   4. The Comments Storm Physics Engine (Drifting Leaves)
-   5. The 3D Vault Orbit Engine (Saves vs Messi, Ronaldo, Neymar)
+   4. The Comments Storm Physics Engine (Dense 18-Leaf Vortex)
+   5. The 3D Vault Orbit Engine (8 Wide Polaroid Cards with Real Photos)
    6. T-Shirt Front/Back Switcher
    7. Accessible Modal Dialog with Light-Dismiss
    ===================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = window.innerWidth < 768;
 
   // ===================================================================
   // 1. PROCEDURAL WEB AUDIO API (Wind Synthesis & Thunder)
@@ -188,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext('2d');
     let cw, ch;
     const puffs = [];
-    const puffCount = window.innerWidth < 768 ? 10 : 20;
+    const puffCount = isMobile ? 12 : 22;
 
     const sprite = document.createElement('canvas');
     sprite.width = sprite.height = 256;
@@ -253,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ===================================================================
-  // 4. THE COMMENTS STORM ENGINE (THE NAILED GALLERY EFFECT)
+  // 4. THE COMMENTS STORM (DENSE, OVERLAPPING STORM MATCHING IMAGE 4)
   // ===================================================================
   const stormField = document.getElementById('stormField');
   if (stormField && !reduceMotion) {
@@ -270,7 +271,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let fieldWidth = stormField.clientWidth;
     let fieldHeight = stormField.clientHeight;
-    const maxAlive = window.innerWidth < 768 ? 4 : 7;
+    // DENSE STORM: 18 active overlapping cards on desktop, 8 on mobile (matching Image 4)
+    const maxAlive = isMobile ? 8 : 18;
     const activeLeaves = [];
     let nextIndex = 0;
 
@@ -284,18 +286,19 @@ document.addEventListener('DOMContentLoaded', () => {
       const item = commentData[nextIndex++ % commentData.length];
       const el = document.createElement('div');
       el.className = 'comment-card';
-      el.innerHTML = `<img src="assets/images/${item.file}" alt="${item.title}" loading="lazy" width="340" height="150">`;
+      el.innerHTML = `<img src="assets/images/${item.file}" alt="${item.title}" loading="lazy" width="320" height="140">`;
       stormField.appendChild(el);
 
       const leaf = {
         el,
         item,
-        x: initial ? Math.random() * (fieldWidth - 340) : fieldWidth + 20,
-        y: Math.random() * (fieldHeight - 160),
-        vx: -(0.75 + Math.random() * 0.65),
-        vy: (Math.random() - 0.5) * 0.2,
-        rot: (Math.random() - 0.5) * 12,
+        x: initial ? Math.random() * (fieldWidth - 320) : fieldWidth + 20,
+        y: Math.random() * (fieldHeight - 150),
+        vx: -(0.85 + Math.random() * 0.85),
+        vy: (Math.random() - 0.5) * 0.35,
+        rot: (Math.random() - 0.5) * 22,
         phase: Math.random() * Math.PI * 2,
+        swayAmp: 12 + Math.random() * 16,
         held: false
       };
 
@@ -317,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
       activeLeaves.push(leaf);
     };
 
-    // Pre-populate field
+    // Pre-populate dense storm
     for (let i = 0; i < maxAlive; i++) {
       spawnLeaf(true);
     }
@@ -327,21 +330,21 @@ document.addEventListener('DOMContentLoaded', () => {
       const dt = Math.min(32, now - lastTick) / 16.7;
       lastTick = now;
 
-      if (activeLeaves.length < maxAlive && Math.random() < 0.035) {
+      if (activeLeaves.length < maxAlive && Math.random() < 0.08) {
         spawnLeaf(false);
       }
 
       for (let i = activeLeaves.length - 1; i >= 0; i--) {
         const L = activeLeaves[i];
         if (!L.held) {
-          L.phase += 0.015 * dt;
+          L.phase += 0.016 * dt;
           L.x += L.vx * gust * dt;
-          L.y += (L.vy + Math.sin(L.phase) * 0.35) * dt;
+          L.y += (L.vy + Math.sin(L.phase) * 0.4) * dt;
 
-          L.el.style.transform = `translate3d(${L.x}px, ${L.y + Math.sin(L.phase * 0.8) * 12}px, 0) rotate(${L.rot}deg)`;
+          L.el.style.transform = `translate3d(${L.x}px, ${L.y + Math.sin(L.phase * 0.8) * L.swayAmp}px, 0) rotate(${L.rot}deg)`;
         }
 
-        // Remove offscreen
+        // Recycle offscreen
         if (L.x < -360) {
           L.el.remove();
           activeLeaves.splice(i, 1);
@@ -353,14 +356,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ===================================================================
-  // 5. THE 3D VAULT ORBIT ENGINE (THE NAILED GALLERY EFFECT)
+  // 5. THE 3D VAULT ORBIT (WIDE POLAROID ORBIT MATCHING IMAGE 2)
   // ===================================================================
   const vaultStage = document.getElementById('vaultStage');
   const orbitCards = document.querySelectorAll('.orbit-card');
   if (vaultStage && orbitCards.length > 0 && !reduceMotion) {
     let angle = 0;
     let isOrbitPaused = false;
-    const speed = 0.007;
+    const speed = 0.0055;
 
     vaultStage.addEventListener('mouseenter', () => { isOrbitPaused = true; });
     vaultStage.addEventListener('mouseleave', () => { isOrbitPaused = false; });
@@ -374,8 +377,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const stageWidth = vaultStage.clientWidth;
-      const rx = Math.min(stageWidth * 0.42, 420); // Horizontal ellipse radius
-      const ry = 80;                               // Vertical ellipse depth
+      // WIDE SWEEPING 3D ELLIPSE (Matching Image 2)
+      const rx = Math.min(stageWidth * 0.46, 520);
+      const ry = 80;
 
       orbitCards.forEach((card, index) => {
         const theta = angle + index * step;
@@ -383,11 +387,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const y = Math.sin(theta) * ry;
         const z = Math.sin(theta); // -1 (back) to +1 (front)
 
-        // Scale between 0.8 and 1.2 based on z-depth
-        const scale = 0.8 + (z + 1) * 0.2;
+        // Depth scale between 0.76 (back) and 1.18 (front)
+        const scale = 0.78 + (z + 1) * 0.20;
         // Dynamic z-index: front cards pass OVER center goalkeeper (z: 10), back cards pass BEHIND (z: 5)
         const zIndex = z > 0 ? 25 : 5;
-        // Opacity falloff at back
+        // Natural atmospheric depth opacity
         const opacity = 0.65 + (z + 1) * 0.18;
 
         card.style.transform = `translate(-50%, -50%) translate3d(${x}px, ${y}px, 0) scale(${scale})`;
@@ -399,7 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     requestAnimationFrame(renderOrbit);
 
-    // Orbit card click opens modal dialog
+    // Orbit card click opens high-res action photo in modal
     orbitCards.forEach((card) => {
       card.addEventListener('click', () => {
         const src = card.getAttribute('data-src');
@@ -435,7 +439,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ===================================================================
-  // 7. ACCESSIBLE MODAL DIALOG (THE NAILED LIGHTBOX)
+  // 7. ACCESSIBLE MODAL DIALOG
   // ===================================================================
   const dialog = document.getElementById('previewModal');
   const dialogImg = document.getElementById('dialogImg');

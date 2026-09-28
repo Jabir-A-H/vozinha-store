@@ -1,7 +1,6 @@
 /* =====================================================================
    VOZINHA.STORE.CV — Master Stylesheet
-   Combines Authentic Cinematic Storm Atmosphere with High-Performance
-   Interactive Photo Galleries (Comments Storm, 3D Orbit, Modal Dialog)
+   Faithful replication of Digital Dropouts 3D Polaroid Orbit & Dense Storm
    ===================================================================== */
 
 @import './fonts.css';
@@ -21,11 +20,12 @@
   --ink-muted:         #8c9ba5;                  /* Slate captions */
   --ink-dim:           #596773;                  /* Subtle tags */
 
-  /* Cape Verde National Accents */
+  /* Cape Verde & Digital Dropouts Accents */
   --cv-gold:           #f2d36e;                  /* Golden stars accent & buttons */
   --cv-gold-glow:      rgba(242, 211, 110, 0.55);
   --cv-blue:           #003882;                  /* National flag blue */
-  --cv-red:            #d63138;                  /* National flag red stripe */
+  --cv-red:            #e03a2e;                  /* Blood crimson dropouts accent */
+  --cv-red-glow:       rgba(224, 58, 46, 0.65);
   --cv-teal:           #35c39f;                  /* Neon stadium highlight */
 
   /* Typography Families */
@@ -91,7 +91,7 @@ button {
 }
 
 /* =====================================================================
-   CINEMATIC ATMOSPHERE LAYERS (From Digital Dropouts)
+   CINEMATIC ATMOSPHERE LAYERS
    ===================================================================== */
 .sky-bg {
   position: fixed;
@@ -169,8 +169,8 @@ button {
   left: 0;
   right: 0;
   z-index: 30;
-  padding: 18px 0;
-  background: linear-gradient(180deg, rgba(4, 8, 7, 0.9) 0%, rgba(4, 8, 7, 0) 100%);
+  padding: 16px 0;
+  background: linear-gradient(180deg, rgba(4, 8, 7, 0.95) 0%, rgba(4, 8, 7, 0) 100%);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -216,7 +216,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 100px;
+  padding-top: 110px;
   padding-bottom: 60px;
   text-align: center;
   z-index: 2;
@@ -375,10 +375,12 @@ button {
    SECTION 2: THE MANIFESTO / STORY
    ===================================================================== */
 .story-section {
-  padding: clamp(80px, 12vw, 150px) 0;
+  padding-top: clamp(100px, 14vw, 160px);
+  padding-bottom: clamp(70px, 10vw, 130px);
   position: relative;
   border-top: 1px solid var(--line-dim);
   z-index: 2;
+  scroll-margin-top: 80px;
 }
 
 .section-head {
@@ -406,6 +408,11 @@ button {
   letter-spacing: 2px;
   margin-bottom: 14px;
   text-shadow: 0 0 26px rgba(53,195,159,.25), 0 4px 30px rgba(0,0,0,.8);
+}
+
+.section-title span.blood {
+  color: var(--cv-red);
+  text-shadow: 0 0 30px var(--cv-red-glow), 0 4px 30px rgba(0,0,0,.8);
 }
 
 .section-title em {
@@ -465,19 +472,21 @@ button {
 
 /* =====================================================================
    SECTION 3: THE COMMENTS STORM (Drifting Social Proof)
-   THE NAILED INTERACTIVE GALLERY EFFECT
+   DENSE, CHAOTIC SWIRL MATCHING DIGITAL DROPOUTS IMAGE 4
    ===================================================================== */
 .storm-section {
-  padding: clamp(80px, 12vw, 140px) 0;
+  padding-top: clamp(100px, 14vw, 170px);
+  padding-bottom: clamp(80px, 12vw, 140px);
   position: relative;
   overflow: hidden;
   background: radial-gradient(ellipse at 50% 50%, rgba(12, 38, 69, 0.45) 0%, transparent 70%);
   z-index: 2;
+  scroll-margin-top: 80px;
 }
 
 .storm-field {
   position: relative;
-  height: clamp(440px, 55vh, 520px);
+  height: clamp(520px, 68vh, 680px);
   width: 100%;
   overflow: hidden;
   cursor: grab;
@@ -486,44 +495,46 @@ button {
 
 .comment-card {
   position: absolute;
-  width: 340px;
-  height: 150px;
-  border-radius: 12px;
+  width: 320px;
+  height: 140px;
+  border-radius: 10px;
   cursor: pointer;
   will-change: transform;
   pointer-events: auto !important;
-  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.75));
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.85));
   transition: filter 0.3s, transform 0.2s var(--ease-out);
   user-select: none;
 }
 
 .comment-card.held {
-  z-index: 50 !important;
-  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 25px rgba(242, 211, 110, 0.5));
+  z-index: 60 !important;
+  filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.98)) drop-shadow(0 0 25px var(--cv-gold));
 }
 
 .comment-card img {
   width: 100%;
   height: 100%;
-  border-radius: 12px;
+  border-radius: 10px;
   pointer-events: none;
 }
 
 /* =====================================================================
    SECTION 4: THE 3D VAULT (Vozinha & The Saves Orbit)
-   THE NAILED INTERACTIVE GALLERY EFFECT
+   AUTHENTIC POLAROID REVOLUTION MATCHING DIGITAL DROPOUTS IMAGE 2
    ===================================================================== */
 .vault-section {
-  padding: clamp(80px, 12vw, 150px) 0;
+  padding-top: clamp(100px, 14vw, 180px);
+  padding-bottom: clamp(80px, 12vw, 150px);
   position: relative;
   border-top: 1px solid var(--line-dim);
   z-index: 2;
+  scroll-margin-top: 80px;
 }
 
 .vault-stage {
   position: relative;
   width: 100%;
-  height: clamp(600px, 80vh, 800px);
+  height: clamp(640px, 85vh, 850px);
   margin-top: 30px;
   display: flex;
   align-items: center;
@@ -531,11 +542,11 @@ button {
   pointer-events: auto !important;
 }
 
-/* Real High-Res Centerpiece Goalkeeper */
+/* Real High-Res Centerpiece Goalkeeper (Feathered Portrait) */
 .vault-center {
   position: relative;
   z-index: 10;
-  width: min(420px, 80vw);
+  width: min(450px, 85vw);
   height: 100%;
   display: flex;
   align-items: center;
@@ -545,43 +556,87 @@ button {
 
 .vault-center img {
   max-height: 85%;
+  width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.95));
-  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.95)) contrast(1.1);
+  mask-image: radial-gradient(ellipse at 50% 45%, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 80%), linear-gradient(to bottom, black 70%, transparent 96%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 45%, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 80%), linear-gradient(to bottom, black 70%, transparent 96%);
 }
 
-/* Orbit Track & Orbiting Cards */
+/* 3D Orbit Track */
 .orbit-track {
   position: absolute;
   inset: 0;
   pointer-events: none;
 }
 
+/* Authentic Polaroid Card in 3D Orbit */
 .orbit-card {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: clamp(180px, 20vw, 240px);
-  aspect-ratio: 4 / 5;
-  border-radius: 14px;
+  width: clamp(200px, 22vw, 240px);
+  padding: 10px 10px 28px;
+  background: linear-gradient(180deg, #f4f6f3 0%, #d2d8d0 100%);
+  border-radius: 4px;
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.85), 0 4px 10px rgba(0, 0, 0, 0.5);
   cursor: pointer;
   pointer-events: auto !important;
   will-change: transform, z-index;
-  transition: filter 0.3s, outline 0.2s;
-  background: #081424;
+  transition: box-shadow 0.3s var(--ease-out), filter 0.3s var(--ease-out);
+}
+
+/* Clothespin clamp on top */
+.orbit-card::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -8px;
+  width: 14px;
+  height: 20px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #5a4a3c, #2b221b);
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0,0,0,.8);
+}
+
+.orbit-card .photo-frame {
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+  border-radius: 2px;
+  background: #081018;
+}
+
+.orbit-card .photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.9) contrast(1.1);
+  transition: filter 0.3s, transform 0.3s;
+}
+
+.orbit-card:hover .photo-frame img {
+  filter: brightness(1.05) contrast(1.15);
+  transform: scale(1.04);
+}
+
+.orbit-card .caption {
+  font-family: var(--font-spec);
+  font-size: 11px;
+  color: #1a221e;
+  text-align: center;
+  margin-top: 10px;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .orbit-card:hover {
-  filter: drop-shadow(0 0 30px var(--cv-gold));
-  outline: 2px solid var(--cv-gold);
-}
-
-.orbit-card img {
-  width: 100%;
-  height: 100%;
-  border-radius: 14px;
-  display: block;
+  z-index: 50 !important;
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.95), 0 0 35px var(--cv-gold);
+  filter: drop-shadow(0 0 15px rgba(242, 211, 110, 0.6));
 }
 
 /* =====================================================================
@@ -593,6 +648,7 @@ button {
   background: radial-gradient(ellipse at 50% 60%, rgba(12, 38, 69, 0.5) 0%, rgba(3, 7, 13, 0.9) 70%);
   border-top: 1px solid var(--line-dim);
   z-index: 2;
+  scroll-margin-top: 80px;
 }
 
 .drop-card {
@@ -814,17 +870,17 @@ button {
 }
 
 /* =====================================================================
-   ACCESSIBLE MODAL DIALOG (The Nailed Lightbox)
+   ACCESSIBLE MODAL DIALOG
    ===================================================================== */
 dialog.preview-dialog {
   position: fixed;
   inset: 0;
   margin: auto;
-  max-width: min(600px, 92vw);
-  max-height: 90vh;
+  max-width: min(720px, 94vw);
+  max-height: 92vh;
   padding: 0;
   border: 1.5px solid var(--cv-gold);
-  border-radius: 20px;
+  border-radius: 16px;
   background: #06101c;
   color: #fff;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 50px rgba(12, 38, 69, 0.8);
@@ -834,13 +890,13 @@ dialog.preview-dialog {
 }
 
 dialog.preview-dialog::backdrop {
-  background: rgba(3, 7, 13, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(3, 7, 13, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .dialog-inner {
-  padding: 30px;
+  padding: 26px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -848,17 +904,19 @@ dialog.preview-dialog::backdrop {
 
 .dialog-img-wrap {
   width: 100%;
-  max-height: 55vh;
-  margin-bottom: 18px;
+  max-height: 60vh;
+  margin-bottom: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #03070d;
+  border-radius: 10px;
 }
 
 .dialog-img-wrap img {
-  max-height: 55vh;
+  max-height: 60vh;
   object-fit: contain;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 .dialog-title {
@@ -866,7 +924,8 @@ dialog.preview-dialog::backdrop {
   font-size: 26px;
   letter-spacing: 1px;
   color: #fff;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
+  text-align: center;
 }
 
 .dialog-desc {
@@ -875,7 +934,7 @@ dialog.preview-dialog::backdrop {
   font-size: 17px;
   color: var(--ink-secondary);
   text-align: center;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 
 .dialog-close-btn {
@@ -918,7 +977,7 @@ dialog.preview-dialog::backdrop {
   }
 
   .storm-field {
-    height: 400px;
+    height: 440px;
   }
 }
 
