@@ -1,0 +1,14 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Scratch / temp
+*.tmp
+*.log
+
+# Node / dependencies
+node_modules/
+dist/
+.astro/
+.next/
