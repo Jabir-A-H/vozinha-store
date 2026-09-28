@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 160" width="100%" height="100%">
+  <defs>
+    <linearGradient id="cbg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E1E30"/>
+      <stop offset="100%" stop-color="#050B14"/>
+    </linearGradient>
+  </defs>
+  <rect width="360" height="160" rx="12" fill="url(#cbg)" stroke="rgba(255,255,255,0.12)" stroke-width="1.2"/>
+  
+  <!-- Avatar -->
+  <circle cx="36" cy="36" r="16" fill="#35C39F" fill-opacity="0.3"/>
+  <circle cx="36" cy="36" r="14" fill="#0C2645"/>
+  <text x="36" y="41" font-family="'Impact', sans-serif" font-size="13" fill="#35C39F" text-anchor="middle">V</text>
+
+  <!-- Author & Handle -->
+  <text x="62" y="32" font-family="sans-serif" font-weight="bold" font-size="13" fill="#FFFFFF">Gabriel Santos</text>
+  <circle cx="160" cy="28" r="4" fill="#35C39F"/>
+  <text x="62" y="48" font-family="monospace" font-size="11" fill="#7F918A">@gabrielfootball</text>
+
+  <!-- Comment Text -->
+  <text x="20" y="80" font-family="sans-serif" font-size="12.5" fill="#E9F0EC" width="320">
+    <tspan x="20" dy="0">Messi, Ronaldo, Neymar... nobody is scorin</tspan>
+    <tspan x="20" dy="18">g on Vozinha on his night. Absolute brick w</tspan>
+    <tspan x="20" dy="18">all.</tspan>
+  </text>
+
+  <!-- Bottom Metric -->
+  <line x1="20" y1="132" x2="340" y2="132" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <text x="20" y="147" font-family="monospace" font-size="10" fill="#35C39F">85.4K Likes</text>
+  <text x="340" y="147" font-family="monospace" font-size="10" fill="#7F918A" text-anchor="end">VERIFIED</text>
+</svg>

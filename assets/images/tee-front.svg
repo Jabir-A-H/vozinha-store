@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%">
+  <defs>
+    <radialGradient id="tBg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#121D2B"/>
+      <stop offset="100%" stop-color="#04080D"/>
+    </radialGradient>
+    <linearGradient id="tCotton" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#181A1D"/>
+      <stop offset="50%" stop-color="#101214"/>
+      <stop offset="100%" stop-color="#08090A"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#tBg)"/>
+
+  <!-- T-shirt Silhouette Front -->
+  <path d="M 210 110 Q 300 150 390 110 L 490 190 L 430 270 L 390 240 L 390 510 L 210 510 L 210 240 L 170 270 L 110 190 Z" 
+        fill="url(#tCotton)" stroke="#222830" stroke-width="2" filter="drop-shadow(0 20px 30px rgba(0,0,0,0.8))"/>
+  
+  <!-- Collar Ribbing -->
+  <path d="M 240 122 Q 300 160 360 122" stroke="#2D333B" stroke-width="6" fill="none"/>
+  
+  <!-- Front Minimalist Chest Crest -->
+  <g transform="translate(340, 220)">
+    <circle cx="20" cy="20" r="26" fill="none" stroke="#F2D36E" stroke-width="1.5"/>
+    <text x="20" y="22" font-family="'Impact', sans-serif" font-size="14" fill="#F2D36E" text-anchor="middle">V1</text>
+    <text x="20" y="32" font-family="monospace" font-size="6" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">VOZINHA</text>
+  </g>
+
+  <!-- Woven Hem Label (Cabo Verde flag) -->
+  <rect x="210" y="485" width="22" height="15" fill="#003882"/>
+  <rect x="210" y="492" width="22" height="3" fill="#D63138"/>
+  <circle cx="218" cy="493" r="2" fill="#F2D36E"/>
+</svg>
