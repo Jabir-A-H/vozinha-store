@@ -180,6 +180,16 @@
   }
   scheduleLightning();
 
+  // Amulet button awakens the storm (lightning strike + thunder)
+  const amulet = document.getElementById('amuletBtn') || root.querySelector('.amulet');
+  if (amulet) {
+    amulet.addEventListener('click', (e) => {
+      e.preventDefault();
+      ensureAudio();
+      strike(true, 1.3);
+    });
+  }
+
   // ===================================================================
   // 3. CANVAS 2D PROCEDURAL SMOKE ENGINE
   // ===================================================================
