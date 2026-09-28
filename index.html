@@ -3,252 +3,344 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>VOZINHA 01 — Official Platform & Merch Drop | vozinha.store.cv</title>
-  <meta name="description" content="Official platform and exclusive apparel drop of Josimar 'Vozinha' Dias. Legendary goalkeeper & captain of Cabo Verde.">
+  <title>VOZINHA — Official Platform & Merch Drop | vozinha.store.cv</title>
+  <meta name="description" content="Official platform and exclusive streetwear drop of Josimar 'Vozinha' Dias. Legendary goalkeeper & captain of Cabo Verde.">
   <meta name="keywords" content="Vozinha, Josimar Dias, Cabo Verde, Tubarões Azuis, Goalkeeper, World Cup, Drop 01, vozinha.store.cv">
-  
-  <!-- OpenGraph / Social -->
-  <meta property="og:title" content="VOZINHA 01 — Official Platform & Merch Drop">
-  <meta property="og:description" content="The Wall of Cabo Verde. Captain. Legend. Explore the iconic saves and Drop 01 Guardian Tee.">
+
+  <!-- OpenGraph / Social Meta -->
+  <meta property="og:title" content="VOZINHA — Official Platform & Merch Drop">
+  <meta property="og:description" content="The Wall of Cabo Verde. Captain. Legend. Explore legendary saves and Drop 01 Guardian Tee.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://vozinha.store.cv">
-  <meta property="og:image" content="assets/images/vozinha-hero.svg">
+  <meta property="og:image" content="assets/vozinha/banner.jpg">
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="assets/images/tee-front.svg">
+  <link rel="icon" type="image/png" href="assets/vozinha/logo.png">
 
-  <!-- Preconnect to Fonts -->
+  <!-- Preconnect to Google Fonts for Bebas Neue and Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Stylesheet -->
+  <!-- Master Stylesheet (Embedded New Rocker, Cormorant Garamond, Special Elite + Storm Core) -->
   <link rel="stylesheet" href="styles/main.css">
 </head>
-<body>
+<body class="stb-body">
 
-  <!-- Ambient Multi-Layer Atmosphere -->
-  <canvas id="smokeCanvas" class="smoke-canvas" aria-hidden="true"></canvas>
-  <div class="film-grain" aria-hidden="true"></div>
+  <div class="stb-storm" id="stb-storm">
 
-  <!-- Top Minimalist Header -->
-  <header class="site-header">
-    <div class="wrap nav-container">
-      <a href="#top" class="brand-link" aria-label="Vozinha Official Home">
-        <span class="brand-badge">1</span>
-        <span class="brand-text">VOZINHA<span>.STORE.CV</span></span>
+    <!-- CONTINUOUS ATMOSPHERE STACK -->
+    <div class="sky" aria-hidden="true">
+      <img src="assets/images/storm-loop-poster.jpg" alt="Storm Sky" fetchpriority="high">
+    </div>
+
+    <!-- Canvas 2D Procedural Smoke -->
+    <canvas class="fx-smoke" aria-hidden="true"></canvas>
+
+    <!-- Fullscreen Lightning Flash Overlay -->
+    <div class="fx-flash" aria-hidden="true"></div>
+
+    <!-- Procedural SVG Film Grain Overlay -->
+    <div class="fx-grain" aria-hidden="true"></div>
+
+    <!-- Top Minimal Navigation Bar -->
+    <header class="nav">
+      <a class="brand" href="#top" aria-label="Vozinha Official Platform">
+        <img src="assets/vozinha/logo.png" alt="Vozinha Logo" width="36" height="36">
+        <span>VOZINHA<em>.CV</em></span>
       </a>
-      <div class="nav-action">
-        <a href="#drop" class="btn-quick-shop">
+      <div class="nav-right">
+        <a class="login" href="#drop">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
           <span>Drop 01</span>
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         </a>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <main id="top">
+    <!-- MAIN PAGE CONTENT -->
+    <div class="page" id="top">
 
-    <!-- ===================================================================
-         SECTION 1: HERO ("The Presence")
-         =================================================================== -->
-    <section class="hero-section" id="hero">
-      <div class="wrap hero-content">
-        <div class="status-pill">
-          <span class="pulse-dot"></span>
-          <span>CABO VERDE #1 • 29M+ GLOBAL WAVE</span>
+      <!-- ===================================================================
+           SECTION 1: THE GATE (Hero Fold)
+           =================================================================== -->
+      <section class="gate">
+        <div class="scene">
+          <!-- 4K Real Vozinha Banner with Atmospheric Masking -->
+          <img class="hero-photo" src="assets/vozinha/banner.jpg" alt="Vozinha — Goalkeeper of Cabo Verde" fetchpriority="high">
         </div>
 
-        <h1 class="hero-title">VOZINHA</h1>
-        <p class="hero-subtitle">Captain. Guardian. <em>The Wall of Mindelo.</em></p>
+        <!-- Animated SVG Lightning Bolt -->
+        <svg class="gate-bolt" viewBox="0 0 1600 900" preserveAspectRatio="none" aria-hidden="true">
+          <path class="main" d="M 760 0 L 790 140 L 750 190 L 815 360 L 780 400 L 810 560 L 795 640"></path>
+          <path class="thin" d="M 750 190 L 700 260 L 715 300"></path>
+          <path class="thin" d="M 815 360 L 870 420 L 855 470"></path>
+        </svg>
 
-        <!-- LCP Image with fetchpriority="high" per Modern Web Guidance -->
-        <div class="hero-visual">
-          <img src="assets/images/vozinha-hero.svg" 
-               alt="Vozinha — Goalkeeper of Cabo Verde" 
-               fetchpriority="high" 
-               width="520" 
-               height="480">
-        </div>
-
-        <a href="#drop" class="btn-amulet" aria-label="Explore Drop 01 T-Shirt">
-          <span class="sonar-ring"></span>
-          <span class="sonar-ring r2"></span>
-          <span>EXPLORE DROP 01</span>
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </a>
-      </div>
-    </section>
-
-    <!-- ===================================================================
-         SECTION 2: THE STORY ("Mindelo to 29 Million")
-         =================================================================== -->
-    <section class="story-section" id="story">
-      <div class="wrap">
-        <div class="section-head">
-          <span class="section-tag">THE LEGACY</span>
-          <h2 class="section-title">FROM MINDELO TO <em>29 MILLION.</em></h2>
-          <p class="section-lead">A lifetime of quiet resilience that captured the heart of the world.</p>
-        </div>
-
-        <div class="story-grid">
-          <div class="story-card">
-            <div class="card-num">1986</div>
-            <h3>The Island Roots</h3>
-            <p>Born in Mindelo, São Vicente. Forged on the rocky pitches of Cabo Verde before taking his commanding leadership across Portugal, Cyprus, Slovakia, and Angola.</p>
+        <div class="gate-ui">
+          <div class="hero-tag-pill">
+            <span class="dot"></span>
+            <span>CABO VERDE #1 • 29M+ GLOBAL WAVE</span>
           </div>
 
-          <div class="story-card">
-            <div class="card-num">2012</div>
-            <h3>Captain of the Sharks</h3>
-            <p>Over a decade defending the flag as the undisputed #1 of the <em>Tubarões Azuis</em>. More than 100 international caps through historic AFCON tournaments.</p>
-          </div>
+          <h1 class="title">VOZINHA<span class="gold">.</span></h1>
+          <p class="line">Captain. Guardian. <em>The Wall of Mindelo.</em></p>
 
-          <div class="story-card">
-            <div class="card-num">29M+</div>
-            <h3>The Global Explosion</h3>
-            <p>Man of the Match against Spain. Casimiro shouted on CazéTV: <em>"Follow this man right now!"</em> A spontaneous global wave uniting millions of supporters worldwide.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================================================================
-         SECTION 3: THE COMMENTS STORM (Drifting Social Proof)
-         =================================================================== -->
-    <section class="storm-section" id="community">
-      <div class="wrap">
-        <div class="section-head">
-          <span class="section-tag">GLOBAL VOICE</span>
-          <h2 class="section-title">THE STORM OF <em>SUPPORT.</em></h2>
-          <p class="section-lead">Millions spoke. Here is what the world had to say.</p>
-        </div>
-      </div>
-
-      <div class="storm-field" id="stormField" aria-label="Drifting fan comments">
-        <!-- Javascript dynamically spawns comment leaves here -->
-      </div>
-    </section>
-
-    <!-- ===================================================================
-         SECTION 4: THE VAULT (Vozinha & The 3D Saves Orbit)
-         =================================================================== -->
-    <section class="vault-section" id="vault">
-      <div class="wrap">
-        <div class="section-head">
-          <span class="section-tag">THE VAULT OF SAVES</span>
-          <h2 class="section-title">AGAINST THE <em>WORLD'S BEST.</em></h2>
-          <p class="section-lead">Stopping the titans. Hover to inspect, click to expand match detail.</p>
-        </div>
-
-        <div class="vault-stage" id="vaultStage">
-          <!-- Centerpiece Goalkeeper Presence -->
-          <div class="vault-center">
-            <img src="assets/images/vozinha-hero.svg" alt="Vozinha in Stance" loading="lazy" width="440" height="600">
-          </div>
-
-          <!-- 3D Orbiting Highlight Cards (Revolving in 3D around him) -->
-          <div class="orbit-track" id="orbitTrack">
-            <div class="orbit-card" data-src="assets/images/save-messi.svg" data-title="Save vs. Lionel Messi" data-desc="90+2' Upper-corner fingertip deflection stopping the Argentine legend.">
-              <img src="assets/images/save-messi.svg" alt="Save vs Messi" loading="lazy" width="240" height="300">
-            </div>
-            <div class="orbit-card" data-src="assets/images/save-ronaldo.svg" data-title="Save vs. Cristiano Ronaldo" data-desc="Point-blank diving reflex save denying Portugal's talisman.">
-              <img src="assets/images/save-ronaldo.svg" alt="Save vs Ronaldo" loading="lazy" width="240" height="300">
-            </div>
-            <div class="orbit-card" data-src="assets/images/save-neymar.svg" data-title="Save vs. Neymar Jr." data-desc="One-on-one penalty box smother in international showdown.">
-              <img src="assets/images/save-neymar.svg" alt="Save vs Neymar" loading="lazy" width="240" height="300">
-            </div>
-            <div class="orbit-card" data-src="assets/images/save-spain.svg" data-title="Man of the Match vs. Spain" data-desc="6 decisive saves securing Cabo Verde's historic draw on the world stage.">
-              <img src="assets/images/save-spain.svg" alt="MVP vs Spain" loading="lazy" width="240" height="300">
-            </div>
-            <div class="orbit-card" data-src="assets/images/save-afcon.svg" data-title="AFCON Quarter-Final Stop" data-desc="Clean sheet heroics carrying the Blue Sharks into African football history.">
-              <img src="assets/images/save-afcon.svg" alt="AFCON Miracle Save" loading="lazy" width="240" height="300">
-            </div>
-            <div class="orbit-card" data-src="assets/images/save-penalty.svg" data-title="The Penalty Block" data-desc="Flying low corner palm stop preserving the clean sheet.">
-              <img src="assets/images/save-penalty.svg" alt="Penalty Stop" loading="lazy" width="240" height="300">
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================================================================
-         SECTION 5: THE DROP (The Guardian T-Shirt Showcase)
-         =================================================================== -->
-    <section class="drop-section" id="drop">
-      <div class="wrap">
-        <div class="drop-card">
-          <!-- T-Shirt Interactive Stage -->
-          <div class="tee-stage">
-            <div class="tee-view-wrap">
-              <img id="teeFront" src="assets/images/tee-front.svg" alt="The Guardian Tee Front" width="440" height="440" loading="lazy">
-              <img id="teeBack" class="hidden" src="assets/images/tee-back.svg" alt="The Guardian Tee Back" width="440" height="440" loading="lazy">
-            </div>
-            <div class="tee-controls">
-              <button type="button" class="tee-btn active" id="btnTeeFront">Front View</button>
-              <button type="button" class="tee-btn" id="btnTeeBack">Back Graphic</button>
-            </div>
-          </div>
-
-          <!-- Product Details & Direct E-Commerce CTA -->
-          <div class="drop-info">
-            <span class="drop-badge">DROP 01 • LIMITED CAPSULE</span>
-            <h2 class="drop-title">THE GUARDIAN TEE</h2>
-            <p class="drop-desc">
-              Heavyweight 260 GSM washed black cotton. Vintage crackle discharge print celebrating Cabo Verde’s #1, the coordinates of Mindelo, and the 29M wave.
-            </p>
-
-            <!-- Direct Buy Now Button redirecting to store -->
-            <a href="https://vozinhaofficial.com/en" target="_blank" rel="noopener" class="btn-buy-now">
-              <span>BUY NOW</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          <!-- The Glowing Pulsing Amulet Button -->
+          <div style="margin-top: 30px;">
+            <a href="#drop" class="amulet" aria-label="Explore Drop 01 T-Shirt" style="display: inline-flex; align-items: center; justify-content: center;">
+              <span class="ring"></span>
+              <span class="ring r2"></span>
+              <svg viewBox="0 0 112 112" aria-hidden="true">
+                <circle cx="56" cy="56" r="46" fill="none" stroke="rgba(255,210,200,.3)" stroke-width="1.5"></circle>
+                <circle cx="56" cy="56" r="36" fill="none" stroke="rgba(242,211,110,.5)" stroke-width="1.5" stroke-dasharray="4 6"></circle>
+              </svg>
+              <span class="paint" style="color: #fff; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; font-weight: bold; z-index: 2;">DROP 01</span>
             </a>
-            <p class="redirect-notice">↗ Direct secure checkout on the official store.</p>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-  </main>
+      <!-- ===================================================================
+           SECTION 2: THE MANIFESTO / STORY
+           =================================================================== -->
+      <section class="block not">
+        <div class="wrap head">
+          <span class="tag">Cabo Verde • Tubarões Azuis</span>
+          <h2 class="title">This is not just a <em>goalkeeper.</em></h2>
+          <span class="line">This is the wall of an entire nation. Forged in Mindelo, celebrated across the world.</span>
+        </div>
+
+        <div class="wrap" style="margin-top: 40px;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+            <div style="background: rgba(4,8,7,.8); border: 1px solid var(--line); border-radius: 12px; padding: 28px 24px;">
+              <div class="paint" style="color: var(--cv-gold); font-size: 36px; margin-bottom: 8px;">1986</div>
+              <h3 class="title" style="font-size: 22px; margin-bottom: 8px;">The Island Roots</h3>
+              <p style="color: var(--mute); font-size: 14px; line-height: 1.6;">Born in Mindelo, São Vicente. A lifetime of grit forged on the island before dominating leagues in Portugal, Cyprus, Slovakia, and Angola.</p>
+            </div>
+            <div style="background: rgba(4,8,7,.8); border: 1px solid var(--line); border-radius: 12px; padding: 28px 24px;">
+              <div class="paint" style="color: var(--cv-gold); font-size: 36px; margin-bottom: 8px;">2012</div>
+              <h3 class="title" style="font-size: 22px; margin-bottom: 8px;">Captain of the Sharks</h3>
+              <p style="color: var(--mute); font-size: 14px; line-height: 1.6;">Over a decade defending the flag as the undisputed #1 of Cabo Verde. More than 100 international caps through historic AFCON tournaments.</p>
+            </div>
+            <div style="background: rgba(4,8,7,.8); border: 1px solid var(--line); border-radius: 12px; padding: 28px 24px;">
+              <div class="paint" style="color: var(--cv-gold); font-size: 36px; margin-bottom: 8px;">29M+</div>
+              <h3 class="title" style="font-size: 22px; margin-bottom: 8px;">The Global Explosion</h3>
+              <p style="color: var(--mute); font-size: 14px; line-height: 1.6;">Man of the Match against Spain. Casimiro shouted on CazéTV: <em>"Follow this man right now!"</em> A spontaneous wave uniting 29 million fans.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SECTION 3: THE COMMENTS STORM (Drifting Social Proof)
+           =================================================================== -->
+      <section class="block stories">
+        <div class="wrap head">
+          <span class="tag">GLOBAL COMMUNITY</span>
+          <h2 class="title">What the storm <em>left behind.</em></h2>
+          <span class="line">Millions spoke across CazéTV, Instagram, and Twitter. Catch one from the storm.</span>
+        </div>
+
+        <!-- Drifting Screenshots Physics Engine Container -->
+        <div class="fx-leaves" id="commentsStorm" aria-label="Drifting fan comments" style="position: relative; height: clamp(450px, 60vh, 550px); opacity: 0.95;">
+          <!-- JavaScript dynamically spawns and animates authentic comment cards -->
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SECTION 4: THE CLOTHESLINE DARKROOM (Match Photos vs Spain)
+           =================================================================== -->
+      <section class="block darkroom-showcase">
+        <div class="wrap head">
+          <span class="tag">OFFICIAL MATCH ARCHIVE</span>
+          <h2 class="title">The Saves vs. <em>Spain.</em></h2>
+          <span class="line">Historic FIFA World Stage draw. Pinned on lines. Hover to reveal full color, click to expand.</span>
+        </div>
+
+        <div class="wrap">
+          <div class="pile" style="margin-top: 20px;">
+            <!-- Sagging Clothesline Cords -->
+            <svg class="lines" viewBox="0 0 1200 600" preserveAspectRatio="none" aria-hidden="true">
+              <path class="shadow" d="M 50 160 Q 600 240 1150 170"></path>
+              <path d="M 50 160 Q 600 240 1150 170"></path>
+              <path class="shadow" d="M 80 400 Q 600 480 1120 410"></path>
+              <path d="M 80 400 Q 600 480 1120 410"></path>
+            </svg>
+
+            <!-- Cast Iron Mounting Nails -->
+            <div class="nail" style="left: 50px; top: 160px;"></div>
+            <div class="nail" style="left: 1150px; top: 170px;"></div>
+            <div class="nail" style="left: 80px; top: 400px;"></div>
+            <div class="nail" style="left: 1120px; top: 410px;"></div>
+
+            <!-- Real High-Res 4K Action Photos Pinned on Line 1 -->
+            <div class="card hung" style="left: 140px; top: 170px; --d: 4.2s; --dl: 0.2s;">
+              <img src="assets/vozinha/spain-111.jpg" alt="Vozinha Diving Save vs Spain" loading="lazy">
+            </div>
+            <div class="card hung" style="left: 420px; top: 195px; --d: 3.8s; --dl: 0.5s;">
+              <img src="assets/vozinha/spain-98.jpg" alt="Vozinha Commanding The Defense" loading="lazy">
+            </div>
+            <div class="card hung" style="left: 700px; top: 195px; --d: 4.6s; --dl: 0.1s;">
+              <img src="assets/vozinha/spain-86.jpg" alt="Point Blank Reflex Stop vs Spain" loading="lazy">
+            </div>
+            <div class="card hung" style="left: 960px; top: 175px; --d: 3.9s; --dl: 0.8s;">
+              <img src="assets/vozinha/spain-71.jpg" alt="Vozinha Celebrating With Tubarões Azuis" loading="lazy">
+            </div>
+
+            <!-- Real High-Res 4K Action Photos Pinned on Line 2 -->
+            <div class="card hung" style="left: 240px; top: 415px; --d: 4.4s; --dl: 0.4s;">
+              <img src="assets/vozinha/spain-72.jpg" alt="Vozinha Post-Match Focus" loading="lazy">
+            </div>
+            <div class="card hung" style="left: 560px; top: 435px; --d: 4.1s; --dl: 0.7s;">
+              <img src="assets/vozinha/spain-89.jpg" alt="Historic World Stage Match Action" loading="lazy">
+            </div>
+            <div class="card hung" style="left: 860px; top: 415px; --d: 4.5s; --dl: 0.3s;">
+              <img src="assets/vozinha/spain-167.jpg" alt="Captain Vozinha In Stance" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SECTION 5: THE 3D VAULT (Vozinha & Legendary Saves Orbit)
+           =================================================================== -->
+      <section class="block trophy" id="vault">
+        <div class="wrap head">
+          <span class="tag">THE VAULT OF SAVES</span>
+          <h2 class="title">Against the <em>World's Best.</em></h2>
+          <span class="line">Stopping Messi, Ronaldo, Neymar, and world-class champions. Click any save to inspect.</span>
+        </div>
+
+        <div class="wrap" style="position: relative;">
+          <div class="vault-stage" id="vaultStage" style="position: relative; width: 100%; height: clamp(620px, 80vh, 800px); display: flex; align-items: center; justify-content: center;">
+            
+            <!-- Real High-Res Cutout / Portrait of Vozinha Centered -->
+            <div class="vault-baba-wrap">
+              <img src="assets/vozinha/portrait.jpeg" alt="Captain Vozinha Portrait" loading="lazy">
+            </div>
+
+            <!-- Orbiting 3D Save Cards revolving around him -->
+            <div class="vault-card-stage" id="vaultCardStage">
+              <div class="vault-orbit-card" data-src="assets/images/save-messi.svg" data-title="Save vs. Lionel Messi">
+                <img src="assets/images/save-messi.svg" alt="Save vs Lionel Messi" loading="lazy">
+                <div class="vault-card-caption">Vs. Lionel Messi</div>
+              </div>
+              <div class="vault-orbit-card" data-src="assets/images/save-ronaldo.svg" data-title="Save vs. Cristiano Ronaldo">
+                <img src="assets/images/save-ronaldo.svg" alt="Save vs Cristiano Ronaldo" loading="lazy">
+                <div class="vault-card-caption">Vs. Cristiano Ronaldo</div>
+              </div>
+              <div class="vault-orbit-card" data-src="assets/images/save-neymar.svg" data-title="Save vs. Neymar Jr.">
+                <img src="assets/images/save-neymar.svg" alt="Save vs Neymar Jr" loading="lazy">
+                <div class="vault-card-caption">Vs. Neymar Jr.</div>
+              </div>
+              <div class="vault-orbit-card" data-src="assets/images/save-spain.svg" data-title="MVP vs. Spain">
+                <img src="assets/images/save-spain.svg" alt="Man of the Match vs Spain" loading="lazy">
+                <div class="vault-card-caption">Man of the Match</div>
+              </div>
+              <div class="vault-orbit-card" data-src="assets/images/save-afcon.svg" data-title="AFCON Miracle Save">
+                <img src="assets/images/save-afcon.svg" alt="AFCON Quarter-Final Stop" loading="lazy">
+                <div class="vault-card-caption">AFCON Miracle</div>
+              </div>
+              <div class="vault-orbit-card" data-src="assets/images/save-penalty.svg" data-title="The Penalty Block">
+                <img src="assets/images/save-penalty.svg" alt="Flying Penalty Deflection" loading="lazy">
+                <div class="vault-card-caption">Penalty Stop</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SECTION 6: THE DEBUT DROP (The Guardian T-Shirt)
+           =================================================================== -->
+      <section class="block drop-showcase" id="drop">
+        <div class="wrap head">
+          <span class="tag">OFFICIAL APPAREL CAPSULE</span>
+          <h2 class="title">The Guardian <em>Tee.</em></h2>
+          <span class="line">Limited Drop 01. Engineered for the supporters of Cabo Verde's greatest wall.</span>
+        </div>
+
+        <div class="wrap">
+          <div class="drop-container">
+            <!-- T-Shirt Interactive Stage -->
+            <div class="tee-stage">
+              <div class="tee-view">
+                <img id="teeFront" src="assets/images/tee-front.svg" alt="The Guardian Tee Front View" loading="lazy">
+                <img id="teeBack" class="hidden" src="assets/images/tee-back.svg" alt="The Guardian Tee Back Graphic" loading="lazy">
+              </div>
+              <div class="tee-buttons">
+                <button type="button" class="tee-toggle-btn active" id="btnFront">Front View</button>
+                <button type="button" class="tee-toggle-btn" id="btnBack">Back Graphic</button>
+              </div>
+            </div>
+
+            <!-- Product Details & Direct E-Commerce Buy Button -->
+            <div class="drop-meta">
+              <span class="badge">DROP 01 • LIMITED RELEASE</span>
+              <h3>THE GUARDIAN TEE</h3>
+              <p class="desc">
+                Heavyweight 260 GSM washed black cotton. Vintage crackle screenprint celebrating Vozinha's iconic #1, the coordinates of Mindelo (16°53'N 24°59'W), and the 29M wave.
+              </p>
+
+              <!-- Single Direct Buy Now Button -->
+              <a href="https://vozinha.store.cv/shop" target="_blank" rel="noopener" class="btn-buy-drop" aria-label="Buy The Guardian Tee on Official Store">
+                <span>BUY NOW</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+              <p style="color: var(--mute); font-family: var(--font-paint); font-size: 11px; margin-top: 14px; letter-spacing: 1px;">
+                ↗ Direct checkout on the official store platform.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           MINIMALIST FOOTER
+           =================================================================== -->
+      <footer>
+        <div class="wrap" style="text-align: center; padding: 40px 0;">
+          <div class="title" style="font-size: 28px; margin-bottom: 14px;">
+            VOZINHA<span style="color: var(--cv-gold);">.STORE.CV</span>
+          </div>
+
+          <div style="display: flex; justify-content: center; gap: 18px; margin-bottom: 20px;">
+            <a href="https://www.instagram.com/vozinha_oficial/" target="_blank" rel="noopener" class="login" aria-label="Instagram">
+              Instagram
+            </a>
+            <a href="https://www.youtube.com/@cazetv" target="_blank" rel="noopener" class="login" aria-label="CazéTV Moments">
+              CazéTV
+            </a>
+          </div>
+
+          <p class="line" style="font-size: 14px; color: var(--mute);">
+            Official Josimar "Vozinha" Dias Platform. Exclusively represented by V1 Group.<br>
+            © 2026 Vozinha. All Rights Reserved.
+          </p>
+        </div>
+      </footer>
+
+    </div>
+  </div>
 
   <!-- ===================================================================
-       SECTION 6: MINIMALIST FOOTER
+       AUTHENTIC DARKROOM LIGHTBOX MODAL
        =================================================================== -->
-  <footer class="site-footer">
-    <div class="wrap footer-content">
-      <div class="footer-brand">VOZINHA<span>.STORE.CV</span></div>
-
-      <div class="footer-socials">
-        <a href="https://www.instagram.com/vozinha_oficial/" target="_blank" rel="noopener" class="social-link" aria-label="Vozinha Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-        </a>
-        <a href="https://www.youtube.com/@cazetv" target="_blank" rel="noopener" class="social-link" aria-label="CazéTV Moments">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 8.2s-.2-1.5-.8-2.1c-.8-.8-1.6-.8-2-.9C16.4 5 12 5 12 5s-4.4 0-7.2.2c-.4 0-1.3.1-2 .9C2.2 6.7 2 8.2 2 8.2S1.8 9.9 1.8 11.6v1.6c0 1.7.2 3.4.2 3.4s.2 1.5.8 2.1c.8.8 1.8.8 2.2.9 1.6.2 7 .2 7 .2s4.4 0 7.2-.2c.4 0 1.3-.1 2-.9.6-.6.8-2.1.8-2.1s.2-1.7.2-3.4v-1.6C22.2 9.9 22 8.2 22 8.2zM10 15.3V9l5.5 3.2L10 15.3z"/></svg>
-        </a>
-      </div>
-
-      <p class="footer-credit">
-        Official Josimar "Vozinha" Dias Platform. Exclusively represented by V1 Group.<br>
-        © 2026 Vozinha. All Rights Reserved.
-      </p>
+  <div id="lb" class="lb" role="dialog" aria-hidden="true" aria-label="Photo Preview">
+    <div class="lb-inner">
+      <img id="lbImg" src="" alt="Enlarged View">
+      <div id="lbCap" class="paint" style="color: #fff; font-size: 14px; margin-top: 12px; letter-spacing: 1px;"></div>
+      <button type="button" class="lb-close" id="lbClose" aria-label="Close Preview">✕</button>
     </div>
-  </footer>
+  </div>
 
-  <!-- ===================================================================
-       MODERN LIGHT-DISMISS DIALOG (Modern Web Guidance Compliant)
-       =================================================================== -->
-  <dialog id="previewModal" class="preview-dialog" closedby="any" aria-labelledby="dialogTitle">
-    <div class="dialog-inner">
-      <div class="dialog-img-wrap">
-        <img id="dialogImg" src="" alt="Moment Preview">
-      </div>
-      <h3 id="dialogTitle" class="dialog-title">Moment</h3>
-      <p id="dialogDesc" class="dialog-desc"></p>
-      <button type="button" class="dialog-close-btn" id="dialogClose">Close</button>
-    </div>
-  </dialog>
+  <!-- Self-Hosted GSAP 3.12.5 -->
+  <script src="js/gsap.min.js"></script>
+  <script src="js/ScrollTrigger.min.js"></script>
 
-  <!-- Main JavaScript Controller -->
+  <!-- Master JavaScript Engine -->
   <script src="js/main.js"></script>
 </body>
 </html>

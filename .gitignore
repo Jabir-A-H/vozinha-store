@@ -3,6 +3,9 @@
 Thumbs.db
 desktop.ini
 
+# Screen recordings & temporary video captures
+*.mp4
+
 # Scratch / temp
 *.tmp
 *.log

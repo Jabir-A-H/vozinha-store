@@ -1,641 +1,244 @@
 /* =====================================================================
    VOZINHA.STORE.CV — "The Wall of Cabo Verde"
-   Pure Frontend Experiential Showcase & Merch Drop Landing Page
+   Authentic Cinematic Dark Atmosphere Engine
    ===================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+@import './fonts.css';
+@import './storm_core.css';
 
+/* Custom Accents for Vozinha & Cabo Verde */
 :root {
-  /* Surfaces & Canvas */
-  --bg-deep:           #03070d;                  /* Stadium midnight black */
-  --bg-navy:           #0c2645;                  /* Cape Verde Atlantic navy */
-  --bg-card:           rgba(12, 38, 69, 0.75);   /* Translucent dark ocean card */
-  --bg-card-hover:     rgba(18, 52, 92, 0.9);
-  --line-border:       rgba(242, 211, 110, 0.2); /* Subtle gold star divider */
-  --line-dim:          rgba(255, 255, 255, 0.08);
-
-  /* Inks (Typography) */
-  --ink-primary:       #ffffff;                  /* Pure stadium white */
-  --ink-secondary:     #e9f0ec;                  /* Soft bone body text */
-  --ink-muted:         #8c9ba5;                  /* Slate captions */
-  --ink-dim:           #596773;                  /* Subtle tags */
-
-  /* Cape Verde National Accents */
-  --cv-gold:           #f2d36e;                  /* Golden stars accent & buttons */
-  --cv-gold-glow:      rgba(242, 211, 110, 0.45);
-  --cv-blue:           #003882;                  /* National flag blue */
-  --cv-red:            #d63138;                  /* National flag red stripe */
-  --cv-teal:           #35c39f;                  /* Neon stadium highlight */
-
-  /* Typography Families */
-  --font-athletic:     'Bebas Neue', 'Impact', sans-serif;
-  --font-narrative:    'Cormorant Garamond', Georgia, serif;
-  --font-sans:         'Inter', system-ui, -apple-system, sans-serif;
-  --font-spec:         'Space Mono', 'Courier New', monospace;
-
-  /* Easing */
-  --ease-out:          cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-elastic:      cubic-bezier(0.34, 1.56, 0.64, 1);
+  --cv-gold: #f2d36e;
+  --cv-gold-glow: rgba(242, 211, 110, 0.45);
+  --cv-blue: #003882;
+  --cv-red: #d63138;
 }
 
-/* ---------- Reset & Base ---------- */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* Ensure root background is pure obsidian storm */
+html, body {
+  background: #040807 !important;
+  color: #e9f0ec !important;
+  font-family: var(--font-whisper);
 }
 
-html {
-  scroll-behavior: smooth;
-  background-color: var(--bg-deep);
-  color: var(--ink-secondary);
-  font-family: var(--font-sans);
-  font-size: 16px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-
-body {
-  position: relative;
-  background: radial-gradient(circle at 50% 10%, #0c2645 0%, #03070d 65%);
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-img, svg {
-  display: block;
-  max-width: 100%;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button {
-  font: inherit;
-  cursor: pointer;
-  border: none;
-  background: none;
-}
-
-/* ---------- Layout Containers ---------- */
-.wrap {
-  width: min(1200px, calc(100% - 40px));
-  margin-inline: auto;
-  position: relative;
-  z-index: 2;
-}
-
-.bleed {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  position: relative;
-}
-
-/* ---------- Multi-Layer Atmosphere Canvas ---------- */
-.smoke-canvas {
-  position: fixed;
+/* Hero Scene: High-Resolution Real Vozinha 4K Banner */
+.stb-storm .scene .hero-photo {
+  position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
-  pointer-events: none;
-  mix-blend-mode: screen;
-  opacity: 0.65;
+  object-fit: cover;
+  object-position: center 30%;
+  filter: brightness(0.65) contrast(1.15) saturate(0.85);
+  mask-image: radial-gradient(ellipse at 50% 40%, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 40%, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
 }
 
-.film-grain {
-  position: fixed;
-  inset: -50%;
-  width: 200%;
-  height: 200%;
-  z-index: 9;
-  pointer-events: none;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.9'/></svg>");
-  animation: grain 1.2s steps(6) infinite;
-}
-
-@keyframes grain {
-  0% { transform: translate(0, 0); }
-  20% { transform: translate(-3%, 2%); }
-  40% { transform: translate(2%, -4%); }
-  60% { transform: translate(-1%, 3%); }
-  80% { transform: translate(3%, 1%); }
-  100% { transform: translate(0, 0); }
-}
-
-/* ---------- Top Minimal Navigation ---------- */
-.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 30;
-  padding: 20px 0;
-  background: linear-gradient(180deg, rgba(3, 7, 13, 0.85) 0%, rgba(3, 7, 13, 0) 100%);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-.nav-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.brand-link {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.brand-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #003882, #0c2645);
-  border: 1.5px solid var(--cv-gold);
-  color: var(--cv-gold);
-  font-family: var(--font-athletic);
-  font-size: 20px;
-  box-shadow: 0 0 15px rgba(242, 211, 110, 0.3);
-}
-
-.brand-text {
-  font-family: var(--font-athletic);
-  font-size: 24px;
-  letter-spacing: 2px;
-  color: #fff;
-}
-
-.brand-text span {
-  color: var(--cv-gold);
-}
-
-.nav-action .btn-quick-shop {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 9px 20px;
-  border-radius: 999px;
-  background: rgba(242, 211, 110, 0.12);
-  border: 1px solid var(--cv-gold);
-  color: var(--cv-gold);
-  font-family: var(--font-spec);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: all 0.25s var(--ease-out);
-}
-
-.nav-action .btn-quick-shop:hover {
-  background: var(--cv-gold);
-  color: #03070d;
-  box-shadow: 0 0 25px var(--cv-gold-glow);
-  transform: translateY(-1px);
-}
-
-/* =====================================================================
-   SECTION 1: HERO ("The Presence")
-   ===================================================================== */
-.hero-section {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 100px;
-  padding-bottom: 60px;
-  text-align: center;
-}
-
-.hero-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 900px;
-}
-
-.status-pill {
+/* Hero Status Pill */
+.hero-tag-pill {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 6px 18px;
   border-radius: 999px;
-  background: rgba(12, 38, 69, 0.8);
+  background: rgba(4, 8, 7, 0.75);
   border: 1px solid rgba(242, 211, 110, 0.35);
-  font-family: var(--font-spec);
-  font-size: 12px;
+  font-family: var(--font-paint);
+  font-size: 11px;
   letter-spacing: 2px;
   color: var(--cv-gold);
-  margin-bottom: 24px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  margin-bottom: 16px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
 }
 
-.pulse-dot {
-  width: 8px;
-  height: 8px;
+.hero-tag-pill .dot {
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: var(--cv-gold);
-  box-shadow: 0 0 10px var(--cv-gold);
-  animation: pulse 1.6s infinite;
+  box-shadow: 0 0 8px var(--cv-gold);
+  animation: stb-pulse 1.4s infinite;
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 0.4; transform: scale(0.9); }
-  50% { opacity: 1; transform: scale(1.15); }
-}
-
-.hero-title {
-  font-family: var(--font-athletic);
-  font-size: clamp(68px, 14vw, 160px);
-  font-weight: 900;
-  line-height: 0.9;
-  letter-spacing: 6px;
-  color: #fff;
-  text-transform: uppercase;
-  text-shadow: 0 0 40px rgba(0, 56, 130, 0.7), 0 8px 40px rgba(0, 0, 0, 0.9);
-  margin-bottom: 12px;
-}
-
-.hero-subtitle {
-  font-family: var(--font-narrative);
-  font-size: clamp(20px, 3.2vw, 36px);
-  font-style: italic;
-  color: var(--ink-secondary);
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.9);
-  margin-bottom: 30px;
-  text-wrap: balance;
-}
-
-.hero-subtitle em {
-  font-style: normal;
+/* Title Accents */
+.stb-storm .title span.gold {
   color: var(--cv-gold);
-}
-
-/* Hero Centerpiece Visual */
-.hero-visual {
-  position: relative;
-  width: min(520px, 90vw);
-  height: 480px;
-  margin-inline: auto;
-  margin-bottom: 35px;
-}
-
-.hero-visual img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.9));
-  animation: subtleFloat 6s ease-in-out infinite alternate;
-}
-
-@keyframes subtleFloat {
-  from { transform: translateY(0); }
-  to { transform: translateY(-12px); }
-}
-
-/* Primary Amulet Button */
-.btn-amulet {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 18px 42px;
-  border-radius: 999px;
-  background: radial-gradient(circle at 50% 30%, #ffd84d 0%, #f2d36e 40%, #c79d3a 80%, #61460c 100%);
-  color: #03070d;
-  font-family: var(--font-athletic);
-  font-size: 24px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  font-weight: bold;
-  box-shadow: 0 0 0 3px rgba(3, 7, 13, 0.9), 0 0 0 5px rgba(242, 211, 110, 0.5), 0 0 50px rgba(242, 211, 110, 0.5);
-  transition: all 0.3s var(--ease-out);
-}
-
-.btn-amulet:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 0 3px rgba(3, 7, 13, 0.9), 0 0 0 6px var(--cv-gold), 0 0 80px rgba(242, 211, 110, 0.8);
-}
-
-.btn-amulet .sonar-ring {
-  position: absolute;
-  inset: -12px;
-  border-radius: 999px;
-  border: 1.5px solid var(--cv-gold);
-  opacity: 0;
-  animation: sonar 2.4s ease-out infinite;
-  pointer-events: none;
-}
-
-.btn-amulet .sonar-ring.r2 {
-  animation-delay: 1.2s;
-}
-
-@keyframes sonar {
-  0% { transform: scale(0.95); opacity: 0.8; }
-  100% { transform: scale(1.25); opacity: 0; }
+  text-shadow: 0 0 30px rgba(242, 211, 110, 0.5), 0 4px 30px rgba(0,0,0,.8);
 }
 
 /* =====================================================================
-   SECTION 2: THE STORY ("Mindelo to 29 Million")
+   THE VAULT (3D Orbit around Vozinha Cutout)
    ===================================================================== */
-.story-section {
-  padding: clamp(80px, 12vw, 160px) 0;
+.vault-baba-wrap {
   position: relative;
-  border-top: 1px solid var(--line-dim);
-}
-
-.section-head {
-  text-align: center;
-  max-width: 800px;
-  margin-inline: auto;
-  margin-bottom: 60px;
-}
-
-.section-tag {
-  font-family: var(--font-spec);
-  font-size: 12px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--cv-gold);
-  margin-bottom: 12px;
-  display: block;
-}
-
-.section-title {
-  font-family: var(--font-athletic);
-  font-size: clamp(42px, 7vw, 84px);
-  line-height: 0.95;
-  color: #fff;
-  letter-spacing: 2px;
-  margin-bottom: 16px;
-}
-
-.section-title em {
-  font-style: normal;
-  color: var(--cv-gold);
-}
-
-.section-lead {
-  font-family: var(--font-narrative);
-  font-size: clamp(18px, 2.2vw, 26px);
-  font-style: italic;
-  color: var(--ink-secondary);
-}
-
-.story-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
-}
-
-.story-card {
-  background: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 36px 32px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: transform 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
-}
-
-.story-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--cv-gold);
-}
-
-.card-num {
-  font-family: var(--font-athletic);
-  font-size: 48px;
-  color: var(--cv-gold);
-  line-height: 1;
-  margin-bottom: 16px;
-}
-
-.story-card h3 {
-  font-family: var(--font-athletic);
-  font-size: 28px;
-  letter-spacing: 1px;
-  color: #fff;
-  margin-bottom: 14px;
-}
-
-.story-card p {
-  color: var(--ink-muted);
-  font-size: 15px;
-  line-height: 1.7;
-}
-
-/* =====================================================================
-   SECTION 3: THE COMMENTS STORM (Drifting Social Proof)
-   ===================================================================== */
-.storm-section {
-  padding: clamp(80px, 12vw, 140px) 0;
-  position: relative;
-  overflow: hidden;
-  background: radial-gradient(ellipse at 50% 50%, rgba(12, 38, 69, 0.4) 0%, transparent 70%);
-}
-
-.storm-field {
-  position: relative;
-  height: 480px;
-  width: 100%;
-  overflow: hidden;
-  cursor: grab;
-}
-
-.comment-card {
-  position: absolute;
-  width: 340px;
-  height: 150px;
-  border-radius: 12px;
-  cursor: pointer;
-  will-change: transform;
-  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.7));
-  transition: filter 0.3s, transform 0.2s var(--ease-out);
-  user-select: none;
-}
-
-.comment-card.held {
-  z-index: 50 !important;
-  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 20px rgba(242, 211, 110, 0.4));
-}
-
-.comment-card img {
-  width: 100%;
-  height: 100%;
-  border-radius: 12px;
-  pointer-events: none;
-}
-
-/* =====================================================================
-   SECTION 4: THE VAULT (Vozinha & The 3D Saves Orbit)
-   ===================================================================== */
-.vault-section {
-  padding: clamp(80px, 12vw, 160px) 0;
-  position: relative;
-  border-top: 1px solid var(--line-dim);
-}
-
-.vault-stage {
-  position: relative;
-  width: 100%;
-  height: clamp(620px, 85vh, 850px);
-  margin-top: 40px;
+  width: min(480px, 85vw);
+  height: 600px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-/* Centerpiece Goalkeeper */
-.vault-center {
-  position: relative;
   z-index: 10;
-  width: min(440px, 85vw);
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   pointer-events: none;
 }
 
-.vault-center img {
-  max-height: 85%;
+.vault-baba-wrap img {
+  max-height: 90%;
   object-fit: contain;
-  filter: drop-shadow(0 15px 45px rgba(0, 0, 0, 0.9));
+  filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.95)) contrast(1.1);
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
 }
 
-/* 3D Orbit Track */
-.orbit-track {
+.vault-card-stage {
   position: absolute;
   inset: 0;
   pointer-events: none;
 }
 
-.orbit-card {
+.vault-orbit-card {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: clamp(180px, 20vw, 240px);
-  aspect-ratio: 4 / 5;
-  border-radius: 14px;
-  cursor: pointer;
+  width: 220px;
+  padding: 8px 8px 22px;
+  background: linear-gradient(180deg, #d9ded9, #b9c2bb);
+  border-radius: 4px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.85);
+  cursor: zoom-in;
   pointer-events: auto;
   will-change: transform, z-index;
-  transition: filter 0.3s, outline 0.2s;
+  transition: box-shadow 0.3s, filter 0.3s;
 }
 
-.orbit-card:hover {
-  filter: drop-shadow(0 0 25px var(--cv-gold));
-  outline: 2px solid var(--cv-gold);
+.vault-orbit-card::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -8px;
+  width: 14px;
+  height: 20px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #5a4a3c, #2b221b);
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0,0,0,.8);
 }
 
-.orbit-card img {
+.vault-orbit-card img {
   width: 100%;
-  height: 100%;
-  border-radius: 14px;
+  height: auto;
+  aspect-ratio: 16/11;
+  object-fit: cover;
+  display: block;
+  filter: brightness(.65) saturate(.6) contrast(1.05);
+  transition: filter .35s;
+}
+
+.vault-orbit-card:hover {
+  z-index: 50 !important;
+  box-shadow: 0 30px 80px rgba(0,0,0,.95), 0 0 35px var(--cv-gold);
+}
+
+.vault-orbit-card:hover img {
+  filter: none;
+}
+
+.vault-card-caption {
+  font-family: var(--font-paint);
+  font-size: 11px;
+  color: #1a1a1a;
+  text-align: center;
+  margin-top: 8px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 /* =====================================================================
-   SECTION 5: THE DROP (The Guardian T-Shirt Showcase)
+   SECTION: THE DEBUT DROP (The Guardian T-Shirt)
    ===================================================================== */
-.drop-section {
-  padding: clamp(90px, 14vw, 180px) 0;
+.block.drop-showcase {
+  padding: clamp(90px, 14vw, 160px) 0;
   position: relative;
-  background: radial-gradient(ellipse at 50% 60%, rgba(12, 38, 69, 0.6) 0%, rgba(3, 7, 13, 0.9) 70%);
-  border-top: 1px solid var(--line-dim);
 }
 
-.drop-card {
+.drop-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 50px;
   align-items: center;
-  background: var(--bg-card);
-  border: 1px solid var(--line-border);
-  border-radius: 24px;
+  background: rgba(4, 8, 7, 0.85);
+  border: 1px solid var(--line);
+  border-radius: 20px;
   padding: clamp(30px, 5vw, 60px);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 60px rgba(12, 38, 69, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9);
 }
 
 .tee-stage {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.tee-view-wrap {
+.tee-view {
   width: 100%;
-  max-width: 440px;
+  max-width: 420px;
   aspect-ratio: 1;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
 }
 
-.tee-view-wrap img {
+.tee-view img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.9));
-  transition: opacity 0.35s ease, transform 0.35s ease;
+  filter: drop-shadow(0 20px 35px rgba(0,0,0,0.9));
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.tee-view-wrap img.hidden {
+.tee-view img.hidden {
   position: absolute;
   opacity: 0;
   pointer-events: none;
-  transform: scale(0.96);
+  transform: scale(0.95);
 }
 
-/* Front / Back Switcher Buttons */
-.tee-controls {
+.tee-buttons {
   display: flex;
   gap: 12px;
   margin-top: 20px;
 }
 
-.tee-btn {
-  padding: 8px 24px;
+.tee-toggle-btn {
+  padding: 8px 22px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  color: var(--ink-secondary);
-  font-family: var(--font-spec);
-  font-size: 12px;
+  color: var(--ink-2);
+  font-family: var(--font-paint);
+  font-size: 11px;
   letter-spacing: 1px;
   text-transform: uppercase;
+  cursor: pointer;
   transition: all 0.25s var(--ease-out);
 }
 
-.tee-btn.active, .tee-btn:hover {
+.tee-toggle-btn.active, .tee-toggle-btn:hover {
   background: var(--cv-gold);
   border-color: var(--cv-gold);
   color: #03070d;
-  font-weight: bold;
 }
 
-/* Product Info */
-.drop-info {
+.drop-meta {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.drop-badge {
-  display: inline-block;
-  font-family: var(--font-spec);
+.drop-meta .badge {
+  font-family: var(--font-paint);
   font-size: 11px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -644,252 +247,69 @@ button {
   border: 1px solid var(--cv-gold);
   padding: 4px 14px;
   border-radius: 999px;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
-.drop-title {
-  font-family: var(--font-athletic);
-  font-size: clamp(38px, 5vw, 68px);
+.drop-meta h3 {
+  font-family: var(--font-horror);
+  font-size: clamp(38px, 5vw, 64px);
   color: #fff;
   line-height: 0.95;
   letter-spacing: 2px;
   margin-bottom: 16px;
 }
 
-.drop-desc {
-  font-family: var(--font-narrative);
+.drop-meta p.desc {
+  font-family: var(--font-whisper);
   font-size: clamp(18px, 2vw, 24px);
   font-style: italic;
-  color: var(--ink-secondary);
+  color: var(--ink-2);
   margin-bottom: 30px;
   line-height: 1.4;
 }
 
-/* The Core Call to Action */
-.btn-buy-now {
+/* Buy Now Button using .seal with gold glow */
+.btn-buy-drop {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
-  width: 100%;
-  max-width: 360px;
-  padding: 18px 36px;
+  gap: 12px;
+  height: 60px;
+  padding: 0 42px;
   border-radius: 999px;
   background: radial-gradient(circle at 50% 30%, #ffd84d 0%, #f2d36e 40%, #c79d3a 80%, #61460c 100%);
   color: #03070d;
-  font-family: var(--font-athletic);
-  font-size: 26px;
+  font-family: var(--font-horror);
+  font-size: 24px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  font-weight: 900;
-  box-shadow: 0 0 0 3px rgba(3, 7, 13, 0.9), 0 0 0 5px rgba(242, 211, 110, 0.5), 0 0 45px rgba(242, 211, 110, 0.5);
+  box-shadow: 0 0 0 3px rgba(4,8,7,.9), 0 0 0 5px rgba(242,211,110,.5), 0 0 45px rgba(242,211,110,.5);
+  cursor: pointer;
   transition: all 0.3s var(--ease-out);
 }
 
-.btn-buy-now:hover {
-  transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 0 0 3px rgba(3, 7, 13, 0.9), 0 0 0 6px var(--cv-gold), 0 0 75px rgba(242, 211, 110, 0.85);
+.btn-buy-drop:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 3px rgba(4,8,7,.9), 0 0 0 6px var(--cv-gold), 0 0 75px rgba(242,211,110,.8);
 }
 
-.btn-buy-now svg {
-  width: 22px;
-  height: 22px;
-  transition: transform 0.25s var(--ease-out);
+.btn-buy-drop svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.25s;
 }
 
-.btn-buy-now:hover svg {
+.btn-buy-drop:hover svg {
   transform: translateX(4px);
 }
 
-.redirect-notice {
-  font-family: var(--font-spec);
-  font-size: 11px;
-  color: var(--ink-dim);
-  margin-top: 14px;
-  letter-spacing: 1px;
-}
-
-/* =====================================================================
-   SECTION 6: MINIMALIST FOOTER
-   ===================================================================== */
-.site-footer {
-  padding: 50px 0 40px;
-  border-top: 1px solid var(--line-dim);
-  background: #020509;
-  text-align: center;
-}
-
-.footer-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
-.footer-brand {
-  font-family: var(--font-athletic);
-  font-size: 28px;
-  letter-spacing: 3px;
-  color: #fff;
-}
-
-.footer-brand span {
-  color: var(--cv-gold);
-}
-
-.footer-socials {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.social-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--ink-secondary);
-  transition: all 0.25s var(--ease-out);
-}
-
-.social-link:hover {
-  background: var(--cv-gold);
-  border-color: var(--cv-gold);
-  color: #03070d;
-  transform: translateY(-2px);
-}
-
-.social-link svg {
-  width: 20px;
-  height: 20px;
-}
-
-.footer-credit {
-  font-family: var(--font-spec);
-  font-size: 12px;
-  color: var(--ink-dim);
-  letter-spacing: 1px;
-}
-
-/* =====================================================================
-   MODERN DIALOG MODAL (Compliant with Modern Web Guidance)
-   ===================================================================== */
-dialog.preview-dialog {
-  position: fixed;
-  inset: 0;
-  margin: auto;
-  max-width: min(600px, 92vw);
-  max-height: 90vh;
-  padding: 0;
-  border: 1px solid var(--cv-gold);
-  border-radius: 20px;
-  background: #06101c;
-  color: #fff;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 50px rgba(12, 38, 69, 0.8);
-  outline: none;
-  overflow: hidden;
-}
-
-dialog.preview-dialog::backdrop {
-  background: rgba(3, 7, 13, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-.dialog-inner {
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.dialog-img-wrap {
-  width: 100%;
-  max-height: 55vh;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.dialog-img-wrap img {
-  max-height: 55vh;
-  object-fit: contain;
-  border-radius: 12px;
-}
-
-.dialog-title {
-  font-family: var(--font-athletic);
-  font-size: 28px;
-  letter-spacing: 1px;
-  color: #fff;
-  margin-bottom: 8px;
-}
-
-.dialog-desc {
-  font-family: var(--font-narrative);
-  font-style: italic;
-  font-size: 18px;
-  color: var(--ink-secondary);
-  text-align: center;
-  margin-bottom: 24px;
-}
-
-.dialog-close-btn {
-  padding: 10px 28px;
-  border-radius: 999px;
-  background: var(--cv-gold);
-  color: #03070d;
-  font-family: var(--font-spec);
-  font-size: 12px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: transform 0.2s;
-}
-
-.dialog-close-btn:hover {
-  transform: scale(1.05);
-}
-
-/* =====================================================================
-   RESPONSIVE QUERIES
-   ===================================================================== */
 @media (max-width: 900px) {
-  .drop-card {
+  .drop-container {
     grid-template-columns: 1fr;
     gap: 40px;
     text-align: center;
   }
-  
-  .drop-info {
+  .drop-meta {
     align-items: center;
-  }
-  
-  .btn-buy-now {
-    max-width: 100%;
-  }
-
-  .vault-stage {
-    height: 580px;
-  }
-
-  .storm-field {
-    height: 400px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .smoke-canvas, .film-grain, .btn-amulet .sonar-ring {
-    animation: none !important;
-    display: none !important;
-  }
-  
-  .hero-visual img {
-    animation: none !important;
   }
 }
