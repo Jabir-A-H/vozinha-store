@@ -171,13 +171,91 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   scheduleLightning();
 
-  // Amulet button click triggers lightning strike & thunder
+  // ===================================================================
+  // 2b. GOALPOST / GOALBAR GATE CONTROLLER & HERO UNVEIL
+  // ===================================================================
+  const goalGate = document.getElementById('goalGate');
+  const gateEnterBtn = document.getElementById('gateEnterBtn');
+  const gateTimerFill = document.getElementById('gateTimerFill');
   const amuletBtn = document.getElementById('amuletBtn');
+
+  let gateOpened = false;
+  let gateTimer = null;
+
+  function openGate() {
+    if (gateOpened || !goalGate) return;
+    gateOpened = true;
+    if (gateTimer) {
+      clearTimeout(gateTimer);
+      gateTimer = null;
+    }
+
+    ensureAudio();
+    // Fire opening lightning strike & thunder
+    strike(true, 1.4);
+
+    goalGate.classList.add('gate-open');
+
+    if (window.gsap) {
+      const tl = window.gsap.timeline({
+        onComplete: () => {
+          goalGate.style.display = 'none';
+        }
+      });
+
+      tl.to('.gate-core', { opacity: 0, scale: 1.08, duration: 0.45, ease: 'power2.out' })
+        .to('.goal-crossbar', { yPercent: -120, duration: 0.85, ease: 'power3.inOut' }, '-=0.25')
+        .to('.door-left', { xPercent: -100, duration: 0.95, ease: 'power3.inOut' }, '-=0.75')
+        .to('.door-right', { xPercent: 100, duration: 0.95, ease: 'power3.inOut' }, '-=0.95')
+        .to('.goal-gate', { opacity: 0, duration: 0.35 }, '-=0.35');
+    } else {
+      setTimeout(() => {
+        goalGate.style.display = 'none';
+      }, 1000);
+    }
+  }
+
+  // Animate the gate countdown fill
+  if (gateTimerFill) {
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        gateTimerFill.style.width = '100%';
+      }, 50);
+    });
+  }
+
+  // Auto-open gate after 2.2 seconds
+  gateTimer = setTimeout(() => {
+    openGate();
+  }, 2200);
+
+  // Manual open on clicking "ENTER THE ARENA"
+  if (gateEnterBtn) {
+    gateEnterBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openGate();
+    });
+  }
+
+  // Also open on clicking anywhere on the gate or pressing Enter/Space
+  if (goalGate) {
+    goalGate.addEventListener('click', () => {
+      openGate();
+    });
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (!gateOpened && (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown')) {
+      openGate();
+    }
+  });
+
+  // Clicking the red amulet button on the unveiled hero triggers lightning & thunder
   if (amuletBtn) {
     amuletBtn.addEventListener('click', (e) => {
       e.preventDefault();
       ensureAudio();
-      strike(true, 1.3);
+      strike(true, 1.4);
     });
   }
 

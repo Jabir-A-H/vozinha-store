@@ -40,13 +40,51 @@
   <div class="film-grain" aria-hidden="true"></div>
 
   <!-- ===================================================================
+       GOALPOST / GOALBAR ENTRANCE GATE
+       =================================================================== -->
+  <div class="goal-gate" id="goalGate" aria-modal="true" role="dialog" aria-label="Entrance Gate">
+    <!-- Top Glowing Goalbar / Crossbar -->
+    <div class="goal-crossbar">
+      <div class="crossbar-glow"></div>
+    </div>
+
+    <!-- Splitting Goalpost Doors with Netting Texture -->
+    <div class="gate-doors">
+      <div class="gate-door door-left">
+        <div class="net-pattern"></div>
+        <div class="post-bar post-left"></div>
+      </div>
+      <div class="gate-door door-right">
+        <div class="net-pattern"></div>
+        <div class="post-bar post-right"></div>
+      </div>
+    </div>
+
+    <!-- Center Gate Core (Name & Official Logo) -->
+    <div class="gate-core" id="gateCore">
+      <img src="assets/vozinha/logo.png" alt="Vozinha Official Crest" class="gate-logo" width="120" height="85">
+      <h1 class="gate-title">VOZINHA</h1>
+      <p class="gate-subtitle">GUARDIAN OF A NATION</p>
+      
+      <button type="button" class="gate-enter-btn" id="gateEnterBtn" aria-label="Enter the Arena">
+        <span>ENTER THE ARENA</span>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+
+      <div class="gate-timer-track">
+        <div class="gate-timer-fill" id="gateTimerFill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
        TOP MINIMAL NAVIGATION
        =================================================================== -->
   <header class="site-header">
     <div class="wrap" style="display: flex; align-items: center; justify-content: space-between;">
-      <a href="#top" class="brand-link" aria-label="Vozinha Official Platform">
-        <span class="brand-badge">1</span>
-        <span class="brand-text">VOZINHA<span>.STORE.CV</span></span>
+      <a href="#top" class="brand-link" aria-label="Vozinha">
+        <img src="assets/vozinha/logo.png" alt="Vozinha Logo" class="brand-logo" width="36" height="26">
+        <span class="brand-text">VOZINHA</span>
       </a>
     </div>
   </header>
@@ -54,11 +92,11 @@
   <main id="top">
 
     <!-- ===================================================================
-         SECTION 1: HERO ("The Gate")
+         SECTION 1: HERO (The Iconic Save)
          =================================================================== -->
     <section class="hero-section" id="hero">
       <div class="hero-scene">
-        <!-- 4K Real Vozinha Banner with Atmospheric Masking -->
+        <!-- 4K Real Vozinha Banner with Clear Unobstructed View -->
         <img class="hero-photo" src="assets/vozinha/banner.jpg" alt="Vozinha — Goalkeeper of Cabo Verde" fetchpriority="high">
       </div>
 
@@ -69,17 +107,14 @@
         <path class="thin" d="M 815 360 L 870 420 L 855 470"></path>
       </svg>
 
-      <div class="wrap hero-content">
+      <div class="wrap hero-bottom-controls">
         <div class="status-pill">
           <span class="pulse-dot"></span>
           <span>CABO VERDE #1 • 29M+ GLOBAL WAVE</span>
         </div>
 
-        <h1 class="hero-title">VOZINHA<span class="gold">.</span></h1>
-        <p class="hero-subtitle">Captain. Guardian. <em>The Wall of Mindelo.</em></p>
-
-        <!-- Atmospheric Pulsing Amulet (Click triggers lightning strike & thunder) -->
-        <div style="margin-top: 15px;">
+        <!-- Atmospheric Pulsing Red Amulet Button (Click triggers lightning strike & thunder) -->
+        <div class="amulet-wrap">
           <button type="button" class="amulet-trigger" id="amuletBtn" aria-label="Awaken the storm">
             <span class="sonar"></span>
             <span class="sonar r2"></span>
@@ -88,7 +123,13 @@
               <circle cx="56" cy="56" r="36" fill="none" stroke="rgba(242,211,110,.5)" stroke-width="1.5" stroke-dasharray="4 6"></circle>
             </svg>
           </button>
+          <span class="amulet-caption">CLICK TO AWAKEN THE STORM</span>
         </div>
+
+        <a href="#story" class="hero-scroll-link" aria-label="Scroll to legacy story">
+          <span>SCROLL TO EXPLORE</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+        </a>
       </div>
     </section>
 
@@ -269,20 +310,31 @@
        =================================================================== -->
   <footer class="site-footer">
     <div class="wrap footer-content">
-      <div class="footer-brand">VOZINHA<span>.STORE.CV</span></div>
+      <div class="footer-brand">
+        <img src="assets/vozinha/logo.png" alt="Vozinha" class="footer-logo" width="38" height="27">
+        <span>VOZINHA</span>
+      </div>
 
       <div class="footer-socials">
-        <a href="https://www.instagram.com/vozinha_oficial/" target="_blank" rel="noopener" class="social-link" aria-label="Vozinha Instagram">
+        <a href="https://www.instagram.com/vozinha1/?hl=en" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
         </a>
-        <a href="https://www.youtube.com/@cazetv" target="_blank" rel="noopener" class="social-link" aria-label="CazéTV Moments">
+        <a href="https://www.facebook.com/VOZINHA.1" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@iamvozinha" target="_blank" rel="noopener" class="social-link" aria-label="YouTube">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 8.2s-.2-1.5-.8-2.1c-.8-.8-1.6-.8-2-.9C16.4 5 12 5 12 5s-4.4 0-7.2.2c-.4 0-1.3.1-2 .9C2.2 6.7 2 8.2 2 8.2S1.8 9.9 1.8 11.6v1.6c0 1.7.2 3.4.2 3.4s.2 1.5.8 2.1c.8.8 1.8.8 2.2.9 1.6.2 7 .2 7 .2s4.4 0 7.2-.2c.4 0 1.3-.1 2-.9.6-.6.8-2.1.8-2.1s.2-1.7.2-3.4v-1.6C22.2 9.9 22 8.2 22 8.2zM10 15.3V9l5.5 3.2L10 15.3z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@vozinha1" target="_blank" rel="noopener" class="social-link" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.85.12V9.33a6.33 6.33 0 0 0-.85-.06 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.42a8.2 8.2 0 0 0 4.77 1.53V6.7c-.36 0-.71-.01-1.05-.01z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/vozinha1/" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
         </a>
       </div>
 
       <p class="footer-credit">
-        Official Josimar "Vozinha" Dias Platform. Exclusively represented by V1 Group.<br>
-        © 2026 Vozinha. All Rights Reserved.
+        © 2026. All Rights Reserved.
       </p>
     </div>
   </footer>
