@@ -176,7 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===================================================================
   const goalGate = document.getElementById('goalGate');
   const gateEnterBtn = document.getElementById('gateEnterBtn');
-  const gateTimerFill = document.getElementById('gateTimerFill');
   const amuletBtn = document.getElementById('amuletBtn');
 
   let gateOpened = false;
@@ -185,6 +184,12 @@ document.addEventListener('DOMContentLoaded', () => {
   function openGate() {
     if (gateOpened || !goalGate) return;
     gateOpened = true;
+
+    // Immediately take user to the top of the site and unlock scrolling
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.classList.remove('gate-locked');
+    document.body.classList.remove('gate-locked');
+
     if (gateTimer) {
       clearTimeout(gateTimer);
       gateTimer = null;
@@ -200,6 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const tl = window.gsap.timeline({
         onComplete: () => {
           goalGate.style.display = 'none';
+          window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
         }
       });
 
@@ -211,44 +217,30 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       setTimeout(() => {
         goalGate.style.display = 'none';
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
       }, 1000);
     }
   }
 
-  // Animate the gate countdown fill
-  if (gateTimerFill) {
-    requestAnimationFrame(() => {
-      setTimeout(() => {
-        gateTimerFill.style.width = '100%';
-      }, 50);
-    });
+  // Prevent scrolling while opening gate is active
+  if (goalGate) {
+    window.scrollTo(0, 0);
+    goalGate.addEventListener('wheel', (e) => {
+      if (!gateOpened) e.preventDefault();
+    }, { passive: false });
+
+    goalGate.addEventListener('touchmove', (e) => {
+      if (!gateOpened) e.preventDefault();
+    }, { passive: false });
   }
 
-  // Auto-open gate after 2.2 seconds
-  gateTimer = setTimeout(() => {
-    openGate();
-  }, 2200);
-
-  // Manual open on clicking "ENTER THE ARENA"
+  // Gate opens strictly when clicking the "ENTER THE ARENA" button
   if (gateEnterBtn) {
     gateEnterBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       openGate();
     });
   }
-
-  // Also open on clicking anywhere on the gate or pressing Enter/Space
-  if (goalGate) {
-    goalGate.addEventListener('click', () => {
-      openGate();
-    });
-  }
-
-  window.addEventListener('keydown', (e) => {
-    if (!gateOpened && (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown')) {
-      openGate();
-    }
-  });
 
   // Clicking the red amulet button on the unveiled hero triggers lightning & thunder
   if (amuletBtn) {
